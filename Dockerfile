@@ -1,4 +1,4 @@
-FROM maven:3.9.6-eclipse-temurin-21-alpine as build
+FROM maven:3.9.6-eclipse-temurin-21-alpine
 WORKDIR /opt/app
 COPY .mvn .mvn
 COPY pom.xml mvnw ./
@@ -7,8 +7,10 @@ COPY ./src ./src
 RUN mvn clean
 RUN mvn package
 
-FROM maven:3.9.6-eclipse-temurin-21-alpine
-WORKDIR /opt/app
-COPY --from=build ./target/*.jar /opt/app/app.jar
-EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "/opt/app/app.jar"]
+ENTRYPOINT ["java", "-jar", "/opt/app/target/pack-0.0.1-SNAPSHOT.jar"]
+
+#FROM maven:3.9.6-eclipse-temurin-21-alpine
+#WORKDIR /opt/app
+#COPY --from=build ./opt/app/target/*.jar /opt/app/app.jar
+#EXPOSE 8080
+#ENTRYPOINT ["java", "-jar", "/opt/app/pack-0.0.1-SNAPSHOT.jar"]
