@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<div th:fragment="item (task)" class="pipeline-item">
+    <div class="pi-controls">
+        <div class="status status-green" data-placement="top" data-toggle="tooltip" title="Active Status"></div>
+    </div>
+    <div class="pi-body">
+        <div class="pi-info">
+            <div class="pi-sub" th:text="${'Total: ' + task.totalCur + ' евро'}"></div>
+            <div class="pi-sub" th:text="${'НДС: ' + task.taxCur + ' евро'}"></div>
+            <div class="pi-sub" th:text="${'Итого: ' + task.totalRub + ' руб'}"></div>
+        </div>
+    </div>
+    <div class="pi-foot">
+        <div class="tags">
+
+        </div>
+
+        <a class="extra-info" href="#"><i class="os-icon os-icon-layers"></i><span>8</span></a>
+    </div>
+</div>
