@@ -590,39 +590,34 @@
 
 
         <ul class="main-menu">
-
-
-
           <li class="menu">
-            <a href="#">
+            <a href="/apps_tasks">
               <span>Заявки</span></a>
           </li>
           <li class="menu">
-            <a href="#">
+            <a href="/apps_done">
               <span>Выполнено</span></a>
           </li>
           <li class="menu">
-            <a href="#">
+            <a href="/apps_calendar">
               <span>Календарь</span></a>
           </li>
           <li class="menu">
-            <a href="#">
+            <a href="/apps_new_paper">
               <span>Новый договор</span></a>
           </li>
           <li class="menu">
-            <a href="#">
+            <a href="/apps_papers">
               <span>Договоры</span></a>
           </li>
           <li class="menu">
-            <a href="#">
+            <a href="/currency">
               <span>Курс валюты</span></a>
           </li>
           <li class="menu">
-            <a href="#">
+            <a href="/services">
               <span>Сервисы и налоги</span></a>
           </li>
-
-
         </ul>
 
 
@@ -719,7 +714,7 @@
                       </h5>
                       <div class="pipeline-header-numbers">
 
-                        <div class="pipeline-count" th:text="${'Заявок: ' + tasks.fill().size()}"></div>
+                        <div class="pipeline-count" th:text="${'Заявок: ' + tasks.fill()}"></div>
                       </div>
                     </div>
 
@@ -743,7 +738,7 @@
                       </h5>
                       <div class="pipeline-header-numbers">
 
-                        <div class="pipeline-count" th:text="${'Заявок: ' + tasks.check().size()}"></div>
+                        <div class="pipeline-count" th:text="${'Заявок: ' + tasks.check()}"></div>
                       </div>
                       <div class="pipeline-settings os-dropdown-trigger">
 
@@ -769,7 +764,7 @@
                       </h5>
                       <div class="pipeline-header-numbers">
 
-                        <div class="pipeline-count" th:text="${'Заявок: ' + tasks.checkGB().size()}"></div>
+                        <div class="pipeline-count" th:text="${'Заявок: ' + tasks.checkGB()}"></div>
                       </div>
                       <div class="pipeline-settings os-dropdown-trigger">
 
@@ -794,7 +789,7 @@
                         В работе
                       </h5>
                       <div class="pipeline-header-numbers">
-                        <div class="pipeline-count" th:text="${'Заявок: ' + tasks.work().size()}"></div>
+                        <div class="pipeline-count" th:text="${'Заявок: ' + tasks.work()}"></div>
                       </div>
                       <div class="pipeline-settings os-dropdown-trigger">
 
