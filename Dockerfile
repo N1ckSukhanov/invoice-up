@@ -1,4 +1,4 @@
-FROM amazoncorretto:21-alpine-jdk as build
+FROM 3.9.6-eclipse-temurin-21-alpine as build
 WORKDIR /opt/app
 COPY .mvn .mvn
 COPY pom.xml mvnw ./
@@ -8,7 +8,7 @@ COPY ./src ./src
 RUN mvn clean
 RUN mvn package
 
-FROM amazoncorretto:21-alpine-jdk
+FROM 3.9.6-eclipse-temurin-21-alpine
 WORKDIR /opt/app
 COPY ./spring-backend/target/*.jar /opt/app/app.jar
 EXPOSE 8080
