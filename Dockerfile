@@ -2,9 +2,11 @@ FROM amazoncorretto:21-alpine-jdk as build
 WORKDIR /opt/app
 COPY .mvn .mvn
 COPY pom.xml mvnw ./
-RUN ./mvnw dependency:go-offline
+
+RUN mvn dependency:resolve
 COPY ./src ./src
-RUN ./mvnw clean install
+RUN mvn clean
+RUN mvn package
 
 FROM amazoncorretto:21-alpine-jdk
 WORKDIR /opt/app
