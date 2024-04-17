@@ -10,6 +10,6 @@ RUN mvn package
 
 FROM maven:3.9.6-eclipse-temurin-21-alpine
 WORKDIR /opt/app
-COPY ./spring-backend/target/*.jar /opt/app/app.jar
+COPY ./target/*.jar /opt/app/app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "/opt/app/app.jar"]
