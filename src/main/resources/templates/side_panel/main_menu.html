@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+<div th:fragment="main_menu()"
+     class="menu-w color-scheme-light color-style-default menu-position-side
+        menu-side-left menu-layout-compact sub-menu-style-over sub-menu-color-bright
+        selected-menu-color-light menu-activated-on-hover">
+
+  <div class="logo-w">
+    <a class="logo" href="">
+      <div class="logo-element"></div>
+      <div class="logo-label">Invoice PRO</div>
+    </a>
+  </div>
+  <div class="logged-user-w avatar-inline">
+    <div class="logged-user-i">
+      <div class="avatar-w"><img th:src="@{/img/avatar1.png}"></div>
+      <div class="logged-user-info-w">
+        <div class="logged-user-name">Бухгалтер</div>
+        <div class="logged-user-role">Администратор</div>
+      </div>
+    </div>
+  </div>
+
+  <ul th:replace="~{side_panel/links :: links('main-menu', false)}"></ul>
+
+  <div class="menu-actions"></div>
+  <ul class="main-menu">
+    <li class=" has-sub-menu">
+
+      <a href="">
+        <div class="icon-w">
+          <div class="os-icon os-icon-layers"></div>
+        </div>
+        <span>Выйти</span>
+      </a>
+    </li>
+  </ul>
+  <div class="menu-actions">
+  </div>
+</div>
+
+
+</body>
+</html>

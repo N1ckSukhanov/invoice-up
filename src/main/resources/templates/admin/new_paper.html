@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div th:fragment="main(paper, can_write)"
+     class="row pt-4">
+  <div class="col-sm-12">
+    <ul th:replace="~{p/link :: crumb3('/', 'Договоры', 'Новый договор')}"></ul>
+    <div class="element-wrapper">
+      <div class="element-box">
+        <form th:action="@{/contract/create}" method="POST" th:object="${paper}" id="formValidate">
+          <h5 class="form-header">Новый агентский договор</h5>
+          <fieldset class="form-group">
+            <legend><span>Общая информация</span></legend>
+            <div class="row">
+              <div th:replace="~{p/inp :: field('contract.clientID', 'Организация', '6')}"></div>
+              <div th:replace="~{p/inp :: field_('contract.contractNumber', 'Номер договора', '6', 'AD-XXXX')}"></div>
+            </div>
+            <div class="row">
+              <div th:replace="~{p/inp :: date('contract.signingDate', 'Дата заключения договора', '6', 'Дата начала')}"></div>
+              <div th:replace="~{p/inp :: date('contract.planFinishDate', 'Дата планового завершения договора', '6', 'Дата планового окончания')}"></div>
+            </div>
+            <div class="row">
+              <div th:replace="~{p/sel :: sel2('contract.user', 'Сторона уплаты налога', '6',
+                                               'Company', 'Организация', 'Service', 'Сервис')}"></div>
+              <div th:replace="~{p/sel :: sel3('contract.contractStatus', 'Статус договора', '6',
+                                               'A', 'Активен', 'B', 'На подписании', 'C', 'Расторгнут')}"></div>
+            </div>
+            <div class="row">
+              <div th:replace="~{p/inp :: field_('contract.index', 'Индекс', '4', 'XXXXXX')}"></div>
+              <div th:replace="~{p/inp :: field_('contract.city', 'Город', '4', 'Москва')}"></div>
+              <div th:replace="~{p/inp :: field_('contract.address', 'Адрес', '4', 'Проспект Андропова, д.1')}"></div>
+            </div>
+          </fieldset>
+          <fieldset class="form-group">
+            <legend><span>Контакты</span></legend>
+            <div class="row">
+              <div th:replace="~{p/inp :: field_('contact1.fullName', 'ФИО 1', '4', 'ФИО')}"></div>
+              <div th:replace="~{p/inp :: email('contact1.email', 'email 1', '4')}"></div>
+              <div th:replace="~{p/sel :: sel2('contact1.accepts', 'Приём документов', '4',
+                                               'Y', 'Да', 'N', 'Нет')}"></div>
+            </div>
+            <div class="row">
+              <div th:replace="~{p/inp :: field_('contact2.fullName', 'ФИО 2', '4', 'ФИО')}"></div>
+              <div th:replace="~{p/inp :: email('contact2.email', 'email 2', '4')}"></div>
+              <div th:replace="~{p/sel :: sel2('contact2.accepts', 'Приём документов', '4',
+                                               'Y', 'Да', 'N', 'Нет')}"></div>
+            </div>
+          </fieldset>
+          <div th:replace="~{p/but :: div_but(${can_write}, 'Зарегистрировать')}"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

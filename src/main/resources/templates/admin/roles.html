@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+<div th:fragment="main(new_user, user_roles, choose_role, change_role, new_role, can_write)"
+     class="row pt-4">
+  <div class="col-sm-12">
+    <ul th:replace="~{p/link :: crumb2('/', 'Роли')}"></ul>
+
+    <div class="element-wrapper">
+      <div class="element-box">
+
+        <!-- Форма создания нового пользователя-администратора -->
+
+        <form th:action="@{/role/create_user}" method="POST" th:object="${new_user}" id="formValidate">
+          <h5 class="form-header">Новый пользователь-администратор</h5>
+          <fieldset class="form-group">
+            <legend><span>Создайте пользователя</span></legend>
+            <div class="row">
+              <div th:replace="~{p/inp :: field('login', 'Логин', '3')}"></div>
+              <div th:replace="~{p/inp :: field('password', 'Пароль', '3')}"></div>
+              <div th:replace="~{p/inp :: select('role', 'Роль', '3', roles)}"></div>
+              <div th:replace="~{p/inp :: field('fullName', 'ФИО', '3')}"></div>
+            </div>
+          </fieldset>
+          <div th:replace="~{p/but :: div_but(${can_write}, 'Создать')}"></div>
+        </form>
+      </div>
+    </div>
+
+    <div class="element-content">
+
+      <h5 class="element-header">Пользователи-администраторы</h5>
+      <div class="element-box-tp">
+        <div class="table-responsive">
+          <table class="table table-padded">
+            <thead>
+            <tr>
+              <th>Логин</th>
+              <th>Пароль</th>
+              <th>ФИО</th>
+              <th>Роль</th>
+              <th>Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user_role : ${user_roles}">
+              <td th:text="${user_role.login}"></td>
+              <td th:text="${user_role.password}"></td>
+              <td th:text="${user_role.fullName}"></td>
+              <td th:text="${user_role.role.info}"></td>
+              <td class="row-actions">
+                <th:block
+                    th:replace="~{p/but :: buttons_l(${can_write}, 'Удалить пользователя')}"></th:block>
+              </td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6 col-xxxl-6">
+        <div class="element-wrapper">
+          <div class="element-box">
+
+            <!-- Найти роль для изменения -->
+
+            <h5 class="form-header">Изменение доступа роли</h5>
+
+            <form th:action="@{/role/choose}" method="POST" th:object="${choose_role}">
+              <div class="row">
+
+                <div th:replace="~{p/inp :: select('id', 'Роль', '6', roles)}"></div>
+
+                <th:block th:replace="~{p/but :: buttons(${can_write}, 'Найти')}"></th:block>
+
+              </div>
+            </form>
+
+
+            <!-- Изменить роль, которую нашли выше -->
+
+            <form th:action="@{/role/change}" method="POST" th:object="${change_role}" id="formValidate">
+              <fieldset class="form-group">
+                <legend><span>Изменить роль</span></legend>
+
+                <div class="row">
+
+                  <input type="hidden" th:field="*{id}" th:value="${change_role.id}"/>
+
+                  <div th:replace="~{p/inp :: field('info', 'Новое описание роли', '6')}"></div>
+
+                  <div th:replace="~{p/inp :: field('code', 'Код роли', '6')}"></div>
+
+                </div>
+
+                <table class="table table-lightborder">
+                  <thead>
+                  <tr>
+                    <th>Функционал</th>
+                    <th class="text-right">Чтение</th>
+                    <th class="text-right">Запись и изменение</th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+                  <tr th:each="page : ${chosen_pages}">
+                    <td th:text="${page.name}" class="nowrap"></td>
+                    <td class="text-right">
+                      <input th:value="${page.name} + '_read'" th:checked="${page.read}" class="form-control"
+                             name="pages_change"
+                             type="checkbox">
+                    </td>
+                    <td class="text-right">
+                      <input th:value="${page.name} + '_write'" th:checked="${page.write}"
+                             class="form-control" name="pages_change"
+                             type="checkbox">
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </fieldset>
+              <div class="form-buttons-w">
+                <th:block
+                    th:replace="~{p/but :: buttons(${can_write}, 'Обновить настройки роли')}"></th:block>
+                <th:block th:replace="~{p/but :: buttons_l(${can_write}, 'Удалить роль')}"></th:block>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 d-xxxl-6">
+        <div class="element-wrapper">
+          <div class="element-box">
+
+            <!-- Создать новую роль -->
+
+            <form th:action="@{/role/create}" method="POST" th:object="${new_role}" id="formValidate">
+              <h5 class="form-header">Создать новую роль</h5>
+              <fieldset class="form-group">
+                <legend><span>Укажите код роли, описание и доступный функционал</span></legend>
+                <div class="row">
+
+                  <div th:replace="~{p/inp :: field('info', 'Описание роли', '6')}"></div>
+
+                  <div th:replace="~{p/inp :: field('code', 'Код роли', '6')}"></div>
+
+                </div>
+                <table class="table table-lightborder">
+                  <thead>
+                  <tr>
+                    <th>Функционал</th>
+                    <th class="text-right">Чтение</th>
+                    <th class="text-right">Запись и изменение</th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+                  <tr th:each="page : ${pages_create}">
+                    <td th:text="${page.name}" class="nowrap"></td>
+                    <td class="text-right">
+                      <input th:value="${page.name} + '_read'"
+                             class="form-control" name="pages_create" type="checkbox">
+                    </td>
+                    <td class="text-right">
+                      <input th:value="${page.name} + '_write'"
+                             class="form-control" name="pages_create" type="checkbox">
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+
+              </fieldset>
+              <div th:replace="~{p/but :: div_but(${can_write}, 'Создать роль')}"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

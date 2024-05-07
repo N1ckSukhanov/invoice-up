@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Роли</title>
+  <meta charset="utf-8">
+  <meta content="ie=edge" http-equiv="x-ua-compatible">
+  <meta content="template language" name="keywords">
+  <meta content="Invoice PRO" name="description">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <link th:href="@{/favicon.png}" rel="shortcut icon">
+  <link th:href="@{/apple-touch-icon.png}" rel="apple-touch-icon">
+  <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet" type="text/css">
+  <link th:href="@{/bower_components/select2/dist/css/select2.min.css}" rel="stylesheet">
+  <link th:href="@{/bower_components/bootstrap-daterangepicker/daterangepicker.css}" rel="stylesheet">
+  <link th:href="@{/bower_components/dropzone/dist/dropzone.css}" rel="stylesheet">
+  <link th:href="@{/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css}" rel="stylesheet">
+  <link th:href="@{/bower_components/fullcalendar/dist/fullcalendar.min.css}" rel="stylesheet">
+  <link th:href="@{/bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css}" rel="stylesheet">
+  <link th:href="@{/bower_components/slick-carousel/slick/slick.css}" rel="stylesheet">
+  <link th:href="@{/css/main.css?version=4.4.0}" rel="stylesheet">
+</head>
+
+<body class="menu-position-side menu-side-left full-screen">
+<div class="all-wrapper solid-bg-all">
+  <div th:replace="~{search :: search()}"></div>
+  <div class="layout-w">
+    <div th:replace="~{mobile_menu :: mobile_menu()}"></div>
+    <div th:replace="~{main_menu :: main_menu()}"></div>
+    <div class="content-w">
+      <div class="content-i">
+        <div class="content-box">
+          <div class="row pt-4">
+            <div class="col-sm-12">
+              <!--------------------
+              START - Breadcrumbs
+              -------------------->
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../index.html">Главная</a></li>
+                <li class="breadcrumb-item"><a href="../index.html">Роли</a></li>
+              </ul>
+
+              <div class="element-wrapper">
+                <div class="element-box">
+
+                  <!-- Форма создания нового пользователя-администратора -->
+
+                  <form th:action="@{/role/create_user}" method="POST" th:object="${new_user}" id="formValidate">
+                    <h5 class="form-header">Новый пользователь-администратор</h5>
+                    <fieldset class="form-group">
+                      <legend><span>Создайте пользователя</span></legend>
+                      <div class="row">
+
+                        <div th:replace="~{p/inp :: field('login', 'Логин', '3')}"></div>
+
+                        <div th:replace="~{p/inp :: field('password', 'Пароль', '3')}"></div>
+
+                        <div th:replace="~{p/inp :: select('role', 'Роль', '3', roles)}"></div>
+
+                        <div th:replace="~{p/inp :: field('fullName', 'ФИО', '3')}"></div>
+
+                      </div>
+                    </fieldset>
+                    <div th:replace="~{p/but :: div_but(${can_write}, 'Создать')}"></div>
+                  </form>
+                </div>
+              </div>
+
+              <div class="element-content">
+
+                <h5 class="element-header">Пользователи-администраторы</h5>
+                <div class="element-box-tp">
+                  <div class="table-responsive">
+                    <table class="table table-padded">
+                      <thead>
+                      <tr>
+                        <th>Логин</th>
+                        <th>Пароль</th>
+                        <th>ФИО</th>
+                        <th>Роль</th>
+                        <th>Действия</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr th:each="user_role : ${user_roles}">
+                        <td th:text="${user_role.login}"></td>
+                        <td th:text="${user_role.password}"></td>
+                        <td th:text="${user_role.fullName}"></td>
+                        <td th:text="${user_role.role.info}"></td>
+                        <td class="row-actions">
+                          <th:block
+                              th:replace="~{p/but :: buttons_l(${can_write}, 'Удалить пользователя')}"></th:block>
+                        </td>
+                      </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6 col-xxxl-6">
+                  <div class="element-wrapper">
+                    <div class="element-box">
+
+                      <!-- Найти роль для изменения -->
+
+                      <h5 class="form-header">Изменение доступа роли</h5>
+
+                      <form th:action="@{/role/choose}" method="POST" th:object="${choose_role}">
+                        <div class="row">
+
+                          <div th:replace="~{p/inp :: select('id', 'Роль', '6', roles)}"></div>
+
+                          <th:block th:replace="~{p/but :: buttons(${can_write}, 'Найти')}"></th:block>
+
+                        </div>
+                      </form>
+
+
+                      <!-- Изменить роль, которую нашли выше -->
+
+                      <form th:action="@{/role/change}" method="POST" th:object="${change_role}" id="formValidate">
+                        <fieldset class="form-group">
+                          <legend><span>Изменить роль</span></legend>
+
+                          <div class="row">
+
+                            <input type="hidden" th:field="*{id}" th:value="${change_role.id}"/>
+
+                            <div th:replace="~{p/inp :: field('info', 'Новое описание роли', '6')}"></div>
+
+                            <div th:replace="~{p/inp :: field('code', 'Код роли', '6')}"></div>
+
+                          </div>
+
+                          <table class="table table-lightborder">
+                            <thead>
+                            <tr>
+                              <th>Функционал</th>
+                              <th class="text-right">Чтение</th>
+                              <th class="text-right">Запись и изменение</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr th:each="page : ${chosen_pages}">
+                              <td th:text="${page.name}" class="nowrap"></td>
+                              <td class="text-right">
+                                <input th:value="${page.name} + '_read'" th:checked="${page.read}" class="form-control"
+                                       name="pages_change"
+                                       type="checkbox">
+                              </td>
+                              <td class="text-right">
+                                <input th:value="${page.name} + '_write'" th:checked="${page.write}"
+                                       class="form-control" name="pages_change"
+                                       type="checkbox">
+                              </td>
+                            </tr>
+                            </tbody>
+                          </table>
+                        </fieldset>
+                        <div class="form-buttons-w">
+                          <th:block
+                              th:replace="~{p/but :: buttons(${can_write}, 'Обновить настройки роли')}"></th:block>
+                          <th:block th:replace="~{p/but :: buttons_l(${can_write}, 'Удалить роль')}"></th:block>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 d-xxxl-6">
+                  <div class="element-wrapper">
+                    <div class="element-box">
+
+                      <!-- Создать новую роль -->
+
+                      <form th:action="@{/role/create}" method="POST" th:object="${new_role}" id="formValidate">
+                        <h5 class="form-header">Создать новую роль</h5>
+                        <fieldset class="form-group">
+                          <legend><span>Укажите код роли, описание и доступный функционал</span></legend>
+                          <div class="row">
+
+                            <div th:replace="~{p/inp :: field('info', 'Описание роли', '6')}"></div>
+
+                            <div th:replace="~{p/inp :: field('code', 'Код роли', '6')}"></div>
+
+                          </div>
+                          <table class="table table-lightborder">
+                            <thead>
+                            <tr>
+                              <th>Функционал</th>
+                              <th class="text-right">Чтение</th>
+                              <th class="text-right">Запись и изменение</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr th:each="page : ${pages_create}">
+                              <td th:text="${page.name}" class="nowrap"></td>
+                              <td class="text-right">
+                                <input th:value="${page.name} + '_read'"
+                                       class="form-control" name="pages_create" type="checkbox">
+                              </td>
+                              <td class="text-right">
+                                <input th:value="${page.name} + '_write'"
+                                       class="form-control" name="pages_create" type="checkbox">
+                              </td>
+                            </tr>
+                            </tbody>
+                          </table>
+
+                        </fieldset>
+                        <div th:replace="~{p/but :: div_but(${can_write}, 'Создать роль')}"></div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="display-type">
+</div>
+
+
+<script th:src="@{/bower_components/jquery/dist/jquery.min.js}"></script>
+<script th:src="@{/bower_components/popper.js/dist/umd/popper.min.js}"></script>
+<script th:src="@{/bower_components/moment/moment.js}"></script>
+<script th:src="@{/bower_components/chart.js/dist/Chart.min.js}"></script>
+<script th:src="@{/bower_components/select2/dist/js/select2.full.min.js}"></script>
+<script th:src="@{/bower_components/jquery-bar-rating/dist/jquery.barrating.min.js}"></script>
+<script th:src="@{/bower_components/ckeditor/ckeditor.js}"></script>
+<script th:src="@{/bower_components/bootstrap-validator/dist/validator.min.js}"></script>
+<script th:src="@{/bower_components/bootstrap-daterangepicker/daterangepicker.js}"></script>
+<script th:src="@{/bower_components/ion.rangeSlider/js/ion.rangeSlider.min.js}"></script>
+<script th:src="@{/bower_components/dropzone/dist/dropzone.js}"></script>
+<script th:src="@{/bower_components/editable-table/mindmup-editabletable.js}"></script>
+<script th:src="@{/bower_components/datatables.net/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js}"></script>
+<script th:src="@{/bower_components/fullcalendar/dist/fullcalendar.min.js}"></script>
+<script th:src="@{/bower_components/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js}"></script>
+<script th:src="@{/bower_components/tether/dist/js/tether.min.js}"></script>
+<script th:src="@{/bower_components/slick-carousel/slick/slick.min.js}"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/util.js}"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/alert.js}"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/button.js}"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/carousel.js}"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/collapse.js}"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/dropdown.js}"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/modal.js}"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/tab.js}"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/tooltip.js}"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/popover.js}"></script>
+<script th:src="@{/js/demo_customizer.js?version=4.4.0}"></script>
+<script th:src="@{/js/main.js?version=4.4.0}"></script>
+<script th:src="@{/js/isogram.js}"></script>
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <title>Новый клиент</title>
+  <title>Admin Dashboard HTML Template</title>
   <meta charset="utf-8">
   <meta content="ie=edge" http-equiv="x-ua-compatible">
   <meta content="template language" name="keywords">
@@ -23,7 +23,7 @@
 </head>
 
 <body class="menu-position-side menu-side-left full-screen">
-<div class="all-wrapper solid-bg-all">
+<div class="all-wrapper no-padding-content solid-bg-all">
   <div class="search-with-suggestions-w">
     <div class="search-with-suggestions-modal">
       <div class="element-search">
@@ -76,7 +76,7 @@
         <div class="ssg-content">
           <div class="ssg-items ssg-items-list">
             <a class="ssg-item" href="users_profile_big.html">
-              <div class="item-media" style="background-image: url(img/avatar1.png)"></div>
+              <div class="item-media" style="background-image: url(img/avatar1.jpg)"></div>
               <div class="item-name">
                 John Ma<span>yer</span>s
               </div>
@@ -154,7 +154,7 @@
       -------------------->
     <div class="menu-mobile menu-activated-on-click color-scheme-dark">
       <div class="mm-logo-buttons-w">
-        <a class="mm-logo" href="index.html"><img th:src="@{/img/logo.png}"><span>Clean Admin</span></a>
+        <a class="mm-logo" href="../index.html"><img th:src="@{/img/logo.png}"><span>Clean Admin</span></a>
         <div class="mm-buttons">
           <div class="content-panel-open">
             <div class="os-icon os-icon-grid-circles"></div>
@@ -167,7 +167,7 @@
       <div class="menu-and-user">
         <div class="logged-user-w">
           <div class="avatar-w">
-            <img alt="" th:src="@{/img/avatar1.png}">
+            <img alt="" th:src="@{/img/avatar1.jpg}">
           </div>
           <div class="logged-user-info-w">
             <div class="logged-user-name">
@@ -183,7 +183,7 @@
           -------------------->
         <ul class="main-menu">
           <li class="has-sub-menu">
-            <a href="index.html">
+            <a href="../index.html">
               <div class="icon-w">
                 <div class="os-icon os-icon-layout"></div>
               </div>
@@ -191,11 +191,10 @@
             </a>
             <ul class="sub-menu">
               <li>
-                <a href="index.html">Dashboard 1</a>
+                <a href="../index.html">Dashboard 1</a>
               </li>
               <li>
-                <a href="apps_crypto.html">Crypto Dashboard <strong
-                    class="badge badge-danger">Hot</strong></a>
+                <a href="apps_crypto.html">Crypto Dashboard <strong class="badge badge-danger">Hot</strong></a>
               </li>
               <li>
                 <a href="apps_support_dashboard.html">Dashboard 3</a>
@@ -292,8 +291,7 @@
                 <a href="apps_support_index.html">Tickets Index</a>
               </li>
               <li>
-                <a href="apps_crypto.html">Crypto Dashboard <strong
-                    class="badge badge-danger">New</strong></a>
+                <a href="apps_crypto.html">Crypto Dashboard <strong class="badge badge-danger">New</strong></a>
               </li>
               <li>
                 <a href="apps_projects.html">Projects List</a>
@@ -305,8 +303,7 @@
                 <a href="apps_full_chat.html">Chat Application</a>
               </li>
               <li>
-                <a href="apps_todo.html">To Do Application <strong
-                    class="badge badge-danger">New</strong></a>
+                <a href="apps_todo.html">To Do Application <strong class="badge badge-danger">New</strong></a>
               </li>
               <li>
                 <a href="misc_chat.html">Popup Chat</a>
@@ -340,7 +337,7 @@
                 <a href="misc_charts.html">Charts</a>
               </li>
               <li>
-                <a href="auth_login.html">Login</a>
+                <a href="../auth_login.html">Login</a>
               </li>
               <li>
                 <a href="auth_register.html">Register</a>
@@ -580,10 +577,10 @@
           </div>
           <div class="logged-user-info-w">
             <div class="logged-user-name">
-              Бухгалтер
+              АТБ
             </div>
             <div class="logged-user-role">
-              Администратор
+              Клиент
             </div>
           </div>
 
@@ -591,34 +588,39 @@
       </div>
 
 
+      <div class="menu-actions">
+        <button class="mr-10 mb-1 btn btn-primary btn-rounded" type="button"> Новая заявка</button>
+      </div>
+
+
       <ul class="main-menu">
-        <li class="menu">
-          <a href="/apps_tasks">
-            <span>Заявки</span></a>
+
+
+        <li class=" has-sub-menu">
+          <a href="/apps_client_dashboard">
+            <div class="icon-w">
+              <div class="os-icon os-icon-layers"></div>
+            </div>
+            <span>Мои заявки</span>
+          </a>
         </li>
-        <li class="menu">
-          <a href="/apps_done">
-            <span>Выполнено</span></a>
+
+
+        <li class=" has-sub-menu">
+          <a href="#">
+            <div class="icon-w">
+              <div class="os-icon os-icon-file-text"></div>
+            </div>
+            <span>Мои договоры</span>
+          </a>
         </li>
-        <li class="menu">
-          <a href="/apps_calendar">
-            <span>Календарь</span></a>
-        </li>
-        <li class="menu">
-          <a href="/apps_new_paper">
-            <span>Новый договор</span></a>
-        </li>
-        <li class="menu">
-          <a href="/apps_papers">
-            <span>Договоры</span></a>
-        </li>
-        <li class="menu">
-          <a href="/currency">
-            <span>Курс валюты</span></a>
-        </li>
-        <li class="menu">
-          <a href="/services">
-            <span>Сервисы и налоги</span></a>
+        <li class=" has-sub-menu">
+          <a href="#">
+            <div class="icon-w">
+              <div class="os-icon os-icon-life-buoy"></div>
+            </div>
+            <span>Поддержка</span>
+          </a>
         </li>
       </ul>
 
@@ -654,231 +656,408 @@
           </div>
 
         </div>
-        -->
+    -->
     </div>
     <!--------------------
       END - Main Menu
       -------------------->
     <div class="content-w">
+      <!--------------------
+        START - Top Bar
+        -------------------->
+      <div class="top-bar color-scheme-transparent d-none">
+
+      </div>
+      <!--------------------
+        END - Top Bar
+        -------------------->
       <div class="content-i">
         <div class="content-box">
-          <div class="row pt-4">
-            <div class="col-sm-12">
-
+          <div class="app-email-w">
+            <div class="app-email-i">
               <!--------------------
-        START - Breadcrumbs
-        -------------------->
-              <ul class="breadcrumb">
-                <li class="breadcrumb-item">
-                  <a href="index.html">Главная</a>
-                </li>
-                <li class="breadcrumb-item">
-                  <a href="index.html">Клиенты</a>
-                </li>
-                <li class="breadcrumb-item">
-                  <span>Новый клиент</span>
-                </li>
-              </ul>
-              <!--------------------
-        END - Breadcrumbs
+  START - Email Messages List
+  -------------------->
+              <!--
+  <div class="ae-list-w">
+    <div class="ael-head">
+      <div class="actions-left">
 
-        <div class="content-panel-toggler">
-          <i class="os-icon os-icon-grid-squares-22"></i><span>Sidebar</span>
+          <a>
+            Заявка 231112-2
+          </a>
+
+      </div>
+
+    </div>
+    <div class="ae-list">
+      <div class="ae-item with-status  status-green">
+        <div class="aei-image">
+          <div class="user-avatar-w">
+            <img alt="" th:src="@{/img/avatar3.png}">
+          </div>
         </div>
-        <div class="content-i">
-          <div class="content-box"><div class="row">
-<div class="col-sm-12">-------------------->
-              <div class="element-wrapper">
-                <div class="element-box">
+        <div class="aei-content">
+          <h6 class="aei-title">
+            3032325024
+          </h6>
 
-                  <!-- Форма для отправки данных -->
-
-                  <form th:action="@{/client/create}" th:object="${client}" method="POST" id="formValidate">
-                    <h5 class="form-header">
-                      Новый клиент
-                    </h5>
-                    <h6 class="form-header">
-                      ID Клиента - A51753
-                    </h6>
-
-
-                    <fieldset class="form-group">
-                      <legend><span>Общая информация</span></legend>
-
-                      <div class="row">
-
-                        <div class="col-sm-3">
-                          <div class="form-group">
-                            <label>БИК</label>
-                            <input class="form-control"
-                                   th:field="*{clientBic}"
-                                   data-error="Укажите номер договора"
-                                   placeholder="AD-XXXX"
-                                   required="required" type="text"/>
-                            <div class="help-block form-text with-errors form-control-feedback"></div>
-                          </div>
-                        </div>
-                        <div class="col-sm-3">
-                          <div class="form-group">
-                            <label>SWIFT BIC</label>
-                            <input class="form-control"
-                                   th:field="*{clientSwiftBic}"
-                                   data-error="Укажите номер договора"
-                                   placeholder="AD-XXXX"
-                                   required="required"
-                                   type="text">
-                            <div class="help-block form-text with-errors form-control-feedback"></div>
-                          </div>
-                        </div>
-                        <div class="col-sm-3">
-                          <div class="form-group">
-                            <label>Статус клиента</label>
-                            <select th:field="*{clientStatus}"
-                                    class="form-control">
-                              <option th:value="'A'" th:text="'Активный'" selected="true">
-                                Активный
-                              </option>
-                              <option th:value="'N'" th:text="'Не активный'">
-                                Не активный
-                              </option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="col-sm-3">
-                          <div class="form-group">
-                            <label>Документооборот</label>
-                            <select th:field="*{clientDocTransfer}"
-                                    class="form-control">
-                              <option th:value="'E'" th:text="'ЭДО'" selected="true">
-                                ЭДО
-                              </option>
-                              <option th:value="'P'" th:text="'Бумажный'">
-                                Бумажный
-                              </option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label>Наименование в 1С в ОСВ</label><input
-                              class="form-control"
-                              th:field="*{client1CName}"
-                              data-error="Укажите номер договора" placeholder="AD-XXXX"
-                              required="required"
-                              type="text">
-                            <div class="help-block form-text with-errors form-control-feedback"></div>
-                          </div>
-                        </div>
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label>Наименование для формирование отчета</label><input
-                              class="form-control"
-                              th:field="*{clientReportName}"
-                              data-error="Укажите номер договора" placeholder="AD-XXXX"
-                              required="required"
-                              type="text">
-                            <div class="help-block form-text with-errors form-control-feedback"></div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label>Customer по справочнику инвойсов</label><input
-                              class="form-control"
-                              th:field="*{clientInvoiceName}"
-                              data-error="Укажите номер договора" placeholder="AD-XXXX"
-                              required="required"
-                              type="text">
-                            <div class="help-block form-text with-errors form-control-feedback"></div>
-                          </div>
-                        </div>
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label>Краткое наименование</label><input
-                              class="form-control"
-                              th:field="*{clientShortName}"
-                              data-error="Укажите номер договора" placeholder="AD-XXXX"
-                              required="required"
-                              type="text">
-                            <div class="help-block form-text with-errors form-control-feedback"></div>
-                          </div>
-                        </div>
-
-                      </div>
-
-                    </fieldset>
-                    <fieldset class="form-group">
-                      <legend><span>Признаки</span></legend>
-                      <div class="row">
-
-                        <div class="col-sm-3">
-                          <div class="form-check">
-                            <label class="form-check-label"><input class="form-check-input"
-                                                                   th:field="*{clientPrSanctions}"
-                                                                   th:value="'SDN'"
-                                                                   type="checkbox">Находится
-                              под санкциями</label>
-                          </div>
-                        </div>
-
-                      </div>
-                    </fieldset>
-                    <fieldset class="form-group">
-                      <legend><span>Данные авторизации</span></legend>
-                      <div class="row">
-
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label>Логин</label><input class="form-control"
-                                                       data-error="Задайте логин"
-                                                       placeholder="AD-XXXX"
-                                                       required="required"
-                                                       type="text">
-                            <div class="help-block form-text with-errors form-control-feedback"></div>
-                          </div>
-                        </div>
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label>Пароль</label><input class="form-control"
-                                                        data-error="Задайте пароль"
-                                                        placeholder="XXXXXXXX"
-                                                        required="required"
-                                                        type="text">
-                            <div class="help-block form-text with-errors form-control-feedback"></div>
-                          </div>
-                        </div>
-                      </div>
-
-                    </fieldset>
-
-
-                    <!--
-        <div class="form-check">
-          <label class="form-check-label"><input class="form-check-input" type="checkbox">I agree to terms and conditions</label>
+          <div class="aei-text">
+            Дата инвойса от 23/10/2023
+          </div>
         </div>
-        -->
-                    <div class="form-buttons-w">
-                      <button class="btn btn-primary" type="submit"> Зарегистрировать</button>
+      </div>
+      <div class="ae-item with-status  status-green">
+        <div class="aei-image">
+          <div class="user-avatar-w">
+            <img alt="" th:src="@{/img/avatar3.png}">
+          </div>
+        </div>
+        <div class="aei-content">
+          <h6 class="aei-title">
+            654984321
+          </h6>
+
+          <div class="aei-text">
+            Дата инвойса от 23/10/2023
+          </div>
+        </div>
+      </div>
+      <div class="ae-item with-status  status-green">
+        <div class="aei-image">
+          <div class="user-avatar-w">
+            <img alt="" th:src="@{/img/avatar3.png}">
+          </div>
+        </div>
+        <div class="aei-content">
+          <h6 class="aei-title">
+            9865216565
+          </h6>
+
+          <div class="aei-text">
+            Дата инвойса от 23/10/2023
+          </div>
+        </div>
+      </div>
+      <div class="ae-item with-status  status-green">
+        <div class="aei-image">
+          <div class="user-avatar-w">
+            <img alt="" th:src="@{/img/avatar3.png}">
+          </div>
+        </div>
+        <div class="aei-content">
+          <h6 class="aei-title">
+            57651573554
+          </h6>
+
+          <div class="aei-text">
+            Дата инвойса от 23/10/2023
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <a class="ae-load-more" href="#"><span></span></a>
+  </div>
+  <!--------------------
+  END - Email Messages List
+  -------------------->
+              <div class="ae-content-w">
+
+                <!--------------------
+    START - Email Content
+    -------------------->
+                <div class="ae-content">
+                  <div class="older-pack">
+                    <div class="aec-full-message-w">
+                      <div class="aec-full-message">
+                        <div class="message-head">
+                          <div class="user-w with-status status-green">
+                            <div class="user-avatar-w">
+                              <div class="user-avatar">
+                                <img alt="" th:src="@{/img/avatar1.jpg}">
+                              </div>
+                            </div>
+                            <div class="user-name">
+                              <h6 class="user-title">
+
+                              </h6>
+                              <div class="user-role">
+
+                              </div>
+                            </div>
+                          </div>
+                          <div class="message-info">
+
+                          </div>
+                        </div>
+                        <div class="message-content">
+
+                        </div>
+                      </div>
                     </div>
-                  </form>
+                  </div>
+                  <div class="aec-full-message-w show-pack">
+                    <div class="more-messages">
+
+                    </div>
+                    <div class="aec-full-message">
+                      <div class="message-head">
+                        <div class="user-w with-status status-green">
+                          <div class="user-avatar-w">
+                            <div class="user-avatar">
+                              <img alt="" th:src="@{/img/avatar3.png}">
+                            </div>
+                          </div>
+                          <div class="user-name">
+                            <h6 class="user-title">
+                              231112-2
+                            </h6>
+                            <div class="user-role">
+                              Заявка<span></span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="message-info">
+                          <button class="mr-2 mb-2 btn btn-outline-primary" type="button"> На доработку</button>
+                          <button class="mr-2 mb-2 btn btn-outline-primary" type="button"> Согласовать</button>
+                        </div>
+
+                      </div>
+                      <div class="message-content">
+                        <h5 class="form-header">
+                          АО АТ-Банк Филиал Дальневосточный
+                          <br><br>
+                          <button class="mr-2 mb-2 btn btn-danger" type="button">Должник</button>
+                          <button class="mr-2 mb-2 btn btn-danger" type="button">Санкции</button>
+                          <button class="mr-2 mb-2 btn btn-success" type="button">Денег достаточно</button>
+                        </h5>
+                        <div class="row">
+                          <div class="col-sm-4">
+                            <div class="form-group">
+                              <label>Номер договора</label>
+                              <select class="form-control">
+                                <option>
+                                  AD-2222 от 20/10/2022 (активен)
+                                </option>
+                                <option>
+                                  AD-3333 от 25/12/2023 (на подписании)
+                                </option>
+                                <option>
+                                  AD-1111 от 14/04/2022 (расторгнут)
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div class="row">
+                          <div class="col-sm-4">
+                            <div class="form-group">
+                              <label>Дата платежа по заявке</label><input class="single-daterange form-control"
+                                                                          placeholder="Дата платежа" type="text"
+                                                                          value="12/25/2023">
+                            </div>
+                          </div>
+
+                          <div class="col-sm-4">
+                            <div class="form-group">
+                              <label>Размер платежа без НДС, евро</label><input class="form-control"
+                                                                                placeholder="" type="text">
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="form-group">
+                              <label>Размер НДС, евро</label><input class="form-control" placeholder=""
+                                                                    type="text">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-sm-4">
+                            <div class="form-group">
+                              <label>Сумма Credit Note, евро</label><input class="form-control" placeholder=""
+                                                                           type="text">
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="form-group">
+                              <label>Номер инвойса Credit Note</label><input class="form-control"
+                                                                             placeholder="" type="text">
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="form-group">
+                              <label>Номер инвойса для уплаты из Credit Note</label><input class="form-control"
+                                                                                           placeholder="" type="text">
+                            </div>
+                          </div>
+                        </div>
+
+                        <h5 class="form-header">
+                          Данные из предоставленных инвойсов
+                        </h5>
+
+
+                        <div class="row">
+                          <div class="element-box-tp">
+                            <div class="table-responsive">
+                              <table class="table table-padded">
+                                <thead>
+                                <tr>
+                                  <th>
+                                    Инвойс
+                                  </th>
+                                  <th>
+                                    Total, евро
+                                  </th>
+                                  <th>
+                                    НДС, евро
+                                  </th>
+                                  <th>
+                                    Признак CN
+                                  </th>
+                                  <th>
+                                    Сервисы
+                                  </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                  <td>
+                                    <a>302000020210</a>
+                                  </td>
+
+                                  <td>
+                                    <a>166.00</a>
+                                  </td>
+                                  <td>
+                                    <a>0.00</a>
+                                  </td>
+                                  <td>
+                                    <a>N</a>
+                                  </td>
+                                  <td>
+                                    <a>Сервис№1, Сервис№2</a>
+                                  </td>
+
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <a>302000020211</a>
+                                  </td>
+
+                                  <td>
+                                    <a>2456.26</a>
+                                  </td>
+                                  <td>
+                                    <a>491.25</a>
+                                  </td>
+                                  <td>
+                                    <a>N</a>
+                                  </td>
+                                  <td>
+                                    <a>Сервис№3, Сервис№4, Сервис№5</a>
+                                  </td>
+
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <a>302000020213</a>
+                                  </td>
+
+                                  <td>
+                                    <a>260.00</a>
+                                  </td>
+                                  <td>
+                                    <a>13.00</a>
+                                  </td>
+                                  <td>
+                                    <a>N</a>
+                                  </td>
+                                  <td>
+                                    <a>Сервис№6</a>
+                                  </td>
+
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <a>Итого</a>
+                                  </td>
+
+                                  <td>
+                                    <a>2882.26</a>
+                                  </td>
+                                  <td>
+                                    <a>504.25</a>
+                                  </td>
+                                  <td>
+                                    <a></a>
+                                  </td>
+                                  <td>
+                                    <a></a>
+                                  </td>
+
+                                </tr>
+
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div class="message-attachments">
+                          <div class="attachments-heading">
+                            Файлы
+                          </div>
+                          <div class="attachments-docs">
+                            <a href="#"><i class="os-icon os-icon-ui-51"></i><span>Оригинал инвойса </span>
+                              302000020210</a><br>
+                            <a href="#"><i class="os-icon os-icon-ui-51"></i><span>Оригинал инвойса </span>
+                              302000020211</a><br>
+                            <a href="#"><i class="os-icon os-icon-ui-51"></i><span>Оригинал инвойса </span>
+                              302000020213</a><br>
+                            <a href="#"><i class="os-icon os-icon-ui-51"></i><span>Оригинал заявки </span></a>
+                            <!--<a href="#"><i class="os-icon os-icon-documents-07"></i><span></span></a>-->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--
+      <div class="aec-reply">
+        <div class="reply-header">
+          <h5>
+            Reply to <span>John Mayers</span>
+          </h5>
+        </div>
+        <textarea cols="80" id="ckeditorEmail" name="ckeditor1" rows="5"></textarea>
+        <div class="buttons-w">
+          <div class="actions-left">
+            <a class="btn btn-link" href="#"><i class="os-icon os-icon-ui-51"></i><span>Add Attachment</span></a>
+          </div>
+          <div class="actions-right">
+            <a class="btn btn-success" href="#"><i class="os-icon os-icon-mail-18"></i><span>Send Message</span></a>
+          </div>
+        </div>
+      </div>
+  -->
                 </div>
+                <!--------------------
+    END - Email Content
+    -------------------->
               </div>
             </div>
           </div>
-
-
         </div>
       </div>
     </div>
   </div>
-</div>
-<div class="display-type"></div>
+  <div class="display-type"></div>
 </div>
 <script th:src="@{/bower_components/jquery/dist/jquery.min.js}"></script>
 <script th:src="@{/bower_components/popper.js/dist/umd/popper.min.js}"></script>

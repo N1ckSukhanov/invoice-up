@@ -30,11 +30,12 @@ public class TaskController {
     private final InvoiceFileRepository invoiceFileRepository;
     private final InvParserRepository invParserRepository;
     private Integer lastTaskId;
+    private final AppService appService;
 
     @GetMapping("/new")
     public String newTask(Model model) {
         model.addAttribute("task", new TaskDto());
-        return "1apps_new_invoice";
+        return "client/new_invoice";
     }
 
     @PostMapping("/create")
@@ -54,7 +55,7 @@ public class TaskController {
 
         lastTaskId = task.getID();
         model.addAttribute("invoice", new TaskInvoice());
-        return "1apps_new_invoice";
+        return "client/new_invoice";
     }
 
     @PostMapping("/add")
@@ -71,7 +72,7 @@ public class TaskController {
         invParserRepository.save(invParser);
 
         model.addAttribute("invoice", new TaskInvoice());
-        return "1apps_new_invoice";
+        return "client/new_invoice";
     }
 
     @PostMapping("/finish_add")
@@ -84,7 +85,7 @@ public class TaskController {
 
         model.addAttribute("check", checkDto);
 
-        return "1apps_new_invoice";
+        return "client/new_invoice";
     }
 
     @PostMapping("/check")
@@ -92,7 +93,7 @@ public class TaskController {
         System.out.println(taskInvoice);
         System.out.println(taskInvoice.getFile().getOriginalFilename());
 
-        return "1apps_new_invoice";
+        return "client/new_invoice";
     }
 
     @GetMapping(value = "/download/{id}", produces = MediaType.APPLICATION_PDF_VALUE)

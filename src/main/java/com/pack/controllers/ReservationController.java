@@ -1,6 +1,7 @@
 package com.pack.controllers;
 
 import com.pack.service.ReservationService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,12 +11,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 public class ReservationController {
     private final ReservationService reservationService;
-
-    public ReservationController(ReservationService reservationService) {
-        this.reservationService = reservationService;
-    }
+    private final AppService appService;
 
     @GetMapping("/api/reservations")
     public List<ReservationService.ReservationDTO> getReservations(

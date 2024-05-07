@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="ru">
+
+<body>
+<div th:fragment="main()">
+  <!--START - Control panel above projects-->
+  <div class="os-tabs-w mx-4">
+    <div class="os-tabs-controls">
+      <ul class="nav nav-tabs upper">
+        <li class="nav-item">
+          <a aria-expanded="false" class="nav-link active" data-toggle="tab" href="#tab_overview"> Все</a>
+        </li>
+        <li class="nav-item">
+          <a aria-expanded="false" class="nav-link" data-toggle="tab" href="#tab_sales"> Сегодня</a>
+        </li>
+        <li class="nav-item">
+          <a aria-expanded="false" class="nav-link" data-toggle="tab" href="#tab_sales"> Ближайшие 3 дня</a>
+        </li>
+        <li class="nav-item">
+          <a aria-expanded="true" class="nav-link " data-toggle="tab" href="#tab_sales"> Позже</a>
+        </li>
+        <li class="nav-item">
+          <a aria-expanded="true" class="nav-link " data-toggle="tab" href="#tab_sales"> Просроченные</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!--END - Control panel above projects-->
+  <div class="pipelines-w">
+    <div class="row">
+      <div class="col-lg-4 col-xxl-3">
+        <!--------------------
+          START - Pipeline
+          -------------------->
+        <div class="pipeline white lined-primary">
+          <div class="pipeline-header">
+            <h5 class="pipeline-name">
+              Заполнение
+            </h5>
+            <div class="pipeline-header-numbers">
+
+              <div class="pipeline-count" th:text="${'Заявок: ' + tasks.fill()}"></div>
+            </div>
+          </div>
+
+          <div class="pipeline-body">
+            <div class="pipeline-item" th:each="task : ${tasks.fill}"
+                 th:insert="~{ins::item (${task})}"></div>
+          </div>
+        </div>
+        <!--------------------
+          END - Pipeline
+          -------------------->
+      </div>
+      <div class="col-lg-4 col-xxl-3">
+        <!--------------------
+          START - Pipeline
+          -------------------->
+        <div class="pipeline white lined-danger">
+          <div class="pipeline-header">
+            <h5 class="pipeline-name">
+              Проверка
+            </h5>
+            <div class="pipeline-header-numbers">
+
+              <div class="pipeline-count" th:text="${'Заявок: ' + tasks.check()}"></div>
+            </div>
+            <div class="pipeline-settings os-dropdown-trigger">
+
+            </div>
+          </div>
+          <div class="pipeline-body">
+            <div class="pipeline-item" th:each="task : ${tasks.check}"
+                 th:insert="~{ins::item (${task})}"></div>
+          </div>
+        </div>
+        <!--------------------
+          END - Pipeline
+          -------------------->
+      </div>
+      <div class="col-lg-4 col-xxl-3">
+        <!--------------------
+          START - Pipeline
+          -------------------->
+        <div class="pipeline white lined-success">
+          <div class="pipeline-header">
+            <h5 class="pipeline-name">
+              Проверка ГБ
+            </h5>
+            <div class="pipeline-header-numbers">
+
+              <div class="pipeline-count" th:text="${'Заявок: ' + tasks.checkGB()}"></div>
+            </div>
+            <div class="pipeline-settings os-dropdown-trigger">
+
+            </div>
+          </div>
+          <div class="pipeline-body">
+            <div class="pipeline-item" th:each="task : ${tasks.checkGB}"
+                 th:insert="~{ins::item (${task})}"></div>
+          </div>
+        </div>
+        <!--------------------
+          END - Pipeline
+          -------------------->
+      </div>
+      <div class="col-lg-4 col-xxl-3 d-none d-xxl-block">
+        <!--------------------
+          START - Pipeline
+          -------------------->
+        <div class="pipeline white lined-warning">
+          <div class="pipeline-header">
+            <h5 class="pipeline-name">
+              В работе
+            </h5>
+            <div class="pipeline-header-numbers">
+              <div class="pipeline-count" th:text="${'Заявок: ' + tasks.work()}"></div>
+            </div>
+            <div class="pipeline-settings os-dropdown-trigger">
+
+            </div>
+          </div>
+          <div class="pipeline-body">
+            <div class="pipeline-item" th:each="task : ${tasks.work}"
+                 th:insert="~{ins::item (${task})}"></div>
+          </div>
+        </div>
+        <!--------------------
+          END - Pipeline
+          -------------------->
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

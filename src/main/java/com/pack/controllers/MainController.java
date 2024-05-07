@@ -3,9 +3,13 @@ package com.pack.controllers;
 import com.pack.dto.PaperClients;
 import com.pack.entity.Client;
 import com.pack.entity.Contract;
+import com.pack.entity.Role;
+import com.pack.entity.UserRole;
 import com.pack.model.ClientSearch;
+import com.pack.repository.RoleRepository;
 import com.pack.service.TaskService;
 import com.pack.service.TaskService.CountResult;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,13 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Collections;
 
 @Controller
+@RequiredArgsConstructor
 public class MainController {
 
     private final TaskService taskService;
-
-    public MainController(TaskService taskService) {
-        this.taskService = taskService;
-    }
+    private final RoleRepository roleRepository;
+    private final AppService appService;
 
     @GetMapping("/")
     public String index() {
@@ -28,13 +31,14 @@ public class MainController {
     }
 
     @GetMapping("/apps_calendar")
-    public String apps_calendar() {
-        return "1apps_calendar";
+    public String apps_calendar(Model model) {
+        appService.setStateModel(AppState.CALENDAR, model);
+        return "admin";
     }
 
     @GetMapping("/apps_client_dashboard")
     public String apps_client_dashboard() {
-        return "1apps_client_dashboard";
+        return "client/client_dashboard";
     }
 
     @GetMapping("/apps_done")
@@ -42,6 +46,7 @@ public class MainController {
             Model model,
             @RequestParam(defaultValue = "day") String statsFor
     ) {
+        appService.setStateModel(AppState.DONE, model);
         CountResult result = switch (statsFor) {
             case "day" -> taskService.getCompletedByDay();
             case "week" -> taskService.getCompletedByWeek();
@@ -53,54 +58,74 @@ public class MainController {
         model.addAttribute("counts", result.counts());
         model.addAttribute("tasks", result.tasks());
         model.addAttribute("statsFor", statsFor);
-        return "1apps_done";
+        return "admin";
     }
 
 
     @GetMapping("/apps_task")
     public String apps_task() {
-        return "1apps_task";
+        return "client/task";
+    }
+
+    @GetMapping("/apps_roles")
+    public String apps_roles(Model model) {
+        appService.setStateModel(AppState.ROLES, model);
+        model.addAttribute("new_user", new UserRole());
+        model.addAttribute("new_role", new Role());
+        model.addAttribute("roles", roleRepository.findAll());
+        return "admin";
+    }
+
+    @GetMapping("/auth_login")
+    public String auth_login() {
+        return "auth_login";
     }
 
     @GetMapping("/apps_tasks")
     public String apps_tasks(Model model) {
+        appService.setStateModel(AppState.TASKS, model);
         var tasks = taskService.getTasksByStatus();
         model.addAttribute("tasks", tasks);
-        return "1apps_tasks";
+        return "admin";
     }
 
 
     //--------------New Controllers--------------
     @GetMapping("/apps_clients")
     public String apps_clients(Model model) {
+        appService.setStateModel(AppState.CLIENTS, model);
         model.addAttribute("clientSearch", new ClientSearch());
         model.addAttribute("clients", Collections.emptyList());
-        return "1apps_clients";
+        return "admin";
     }
 
 
     @GetMapping("/apps_new_client")
     public String apps_new_client(Model model) {
+        appService.setStateModel(AppState.NEW_CLIENT, model);
         model.addAttribute("client", new Client());
-        return "1apps_new_client";
+        return "admin";
     }
 
     @GetMapping("/apps_new_paper")
     public String apps_new_paper(Model model) {
+        appService.setStateModel(AppState.NEW_PAPER, model);
         model.addAttribute("paper", new PaperClients());
-        return "1apps_new_paper";
+        return "admin";
     }
 
     @GetMapping("/apps_papers")
     public String apps_papers(Model model) {
+        appService.setStateModel(AppState.PAPERS, model);
         model.addAttribute("contractSearch", new Contract());
         model.addAttribute("contracts", Collections.emptyList());
-        return "1apps_papers";
+        return "admin";
     }
 
     @GetMapping("/apps_services")
-    public String apps_services() {
-        return "1apps_services";
+    public String apps_services(Model model) {
+        appService.setStateModel(AppState.SERVICES, model);
+        return "admin";
     }
 
 }

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div th:fragment="main(clientSearch, clients, can_write)" class="element-wrapper">
+
+  <h6 class="element-header">Клиенты</h6>
+
+  <div class="row">
+    <div class="col-sm-2 col-xxxl-3">
+      <a class="element-box el-tablo centered trend-in-corner padded bold-label"
+         th:href="@{/apps_new_client}">
+        <div class="value">+</div>
+        <div class="label">Новый клиент</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="element-box">
+    <form th:action="@{/client/search}"
+          th:object="${clientSearch}" method="POST"
+          id="formValidate">
+      <h5 class="form-header">Фильтр поиска клиентов</h5>
+      <fieldset class="form-group">
+        <div class="row">
+
+          <div th:replace="~{p/inp :: field_('clientShortName', 'Номер договора', '4', 'AD-XXXX')}"></div>
+
+          <div th:replace="~{p/sel :: sel2('clientPrSanctions', 'Признак Санкций', '4',
+                                               'SDN', 'Да', 'N', 'Нет')}"></div>
+
+          <div th:replace="~{p/sel :: sel2('clientStatus', 'Статус клиента', '4',
+                                               'A', 'Активный', 'N', 'Не активный')}"></div>
+
+        </div>
+      </fieldset>
+
+      <div th:replace="~{p/but :: div_but(${can_write}, 'Искать')}"></div>
+    </form>
+  </div>
+
+  <div th:replace="~{p/info :: info('Клиенты', ${clients_header}, ${clients_values})}"></div>
+</div>
+
+
+</body>
+
+</html>

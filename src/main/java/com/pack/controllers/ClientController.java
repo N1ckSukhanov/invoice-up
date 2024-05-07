@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -17,9 +18,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ClientController {
     private final ClientRepository clientRepository;
+    private final AppService appService;
 
     @PostMapping("/create")
     public String createClient(@ModelAttribute Client client) {
+
         clientRepository.save(client);
         System.out.println(client);
         return "redirect:/";
@@ -27,12 +30,33 @@ public class ClientController {
 
     @PostMapping("/search")
     public String searchClient(@ModelAttribute ClientSearch clientSearch, Model model) {
+        appService.setStateModel(AppState.CLIENTS, model);
         System.out.println(clientSearch);
         List<Client> clients = clientRepository.findAllByClientShortNameIgnoreCaseAndClientStatusAndClientPrSanctions(
                 clientSearch.getClientShortName(), clientSearch.getClientStatus(), clientSearch.getClientPrSanctions());
+
+        List<List<String>> elems = new ArrayList<>();
+        for (Client client : clients){
+            List<String> array = new ArrayList<>();
+            array.add(client.getClientID());
+            array.add(client.getClientShortName());
+            array.add(client.getClientPrSanctions());
+            array.add(client.getClientPrSpecialCalendar());
+            array.add(client.getClientStatus());
+            elems.add(array);
+        }
         System.out.println(clients);
-        model.addAttribute("clients", clients);
-        return "1apps_clients";
+
+        List<String> heads = new ArrayList<>();
+        heads.add("Клиент ID");
+        heads.add("Краткое наименование");
+        heads.add("Признак санкций");
+        heads.add("Признак особого календаря");
+        heads.add("Статус");
+
+        model.addAttribute("clients_values", elems);
+        model.addAttribute("clients_header", heads);
+        return "admin";
     }
 
 }

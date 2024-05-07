@@ -2,7 +2,9 @@ package com.pack.parser;
 
 import com.pack.entity.Task;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 

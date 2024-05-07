@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div th:fragment="main(client, can_write)"
+     class="row pt-4">
+  <div class="col-sm-12">
+    <ul th:replace="~{p/link :: crumb3('/', 'Клиенты', 'Новый клиент')}"></ul>
+
+    <div class="element-wrapper">
+      <div class="element-box">
+
+        <!-- Форма для отправки данных -->
+
+        <form th:action="@{/client/create}" th:object="${client}" method="POST" id="formValidate">
+          <h5 class="form-header">Новый клиент</h5>
+          <h6 class="form-header">ID Клиента - A51753</h6>
+
+          <fieldset class="form-group">
+            <legend><span>Общая информация</span></legend>
+
+            <div class="row">
+
+              <div th:replace="~{p/inp :: field_('clientBic', 'БИК', '3', 'AD-XXXX')}"></div>
+
+              <div th:replace="~{p/inp :: field_('clientSwiftBic', 'SWIFT BIC', '3', 'AD-XXXX')}"></div>
+
+              <div th:replace="~{p/sel :: sel2('clientStatus', 'Статус клиента', '3',
+                                               'A', 'Активный', 'N', 'Не активный')}"></div>
+
+              <div th:replace="~{p/sel :: sel2('clientDocTransfer', 'Документооборот', '3',
+                                               'E', 'ЭДО', 'P', 'Бумажный')}"></div>
+            </div>
+
+            <div class="row">
+              <div th:replace="~{p/inp :: field_('client1CName', 'Наименование в 1С в ОСВ', '6', 'AD-XXXX')}"></div>
+              <div
+                  th:replace="~{p/inp :: field_('clientReportName', 'Наименование для формирование отчета', '6', 'AD-XXXX')}"></div>
+            </div>
+
+            <div class="row">
+              <div
+                  th:replace="~{p/inp :: field_('clientInvoiceName', 'Customer по справочнику инвойсов', '6', 'AD-XXXX')}"></div>
+              <div th:replace="~{p/inp :: field_('clientShortName', 'Краткое наименование', '6', 'AD-XXXX')}"></div>
+            </div>
+
+          </fieldset>
+          <fieldset class="form-group">
+            <legend><span>Признаки</span></legend>
+            <div class="row">
+
+              <div class="col-sm-3">
+                <div class="form-check">
+                  <label class="form-check-label">Находится под санкциями</label>
+                  <input th:field="*{clientPrSanctions}" th:value="'SDN'"
+                         class="form-check-input" type="checkbox">
+                </div>
+              </div>
+
+            </div>
+          </fieldset>
+          <fieldset class="form-group">
+            <legend><span>Данные авторизации</span></legend>
+            <div class="row">
+              <!--                        <div th:replace="~{p/inp :: field('???', 'Логин', '6', 'AD-XXXX')}"></div>-->
+              <!--                        <div th:replace="~{p/inp :: field('???', 'Пароль', '6', 'AD-XXXX')}"></div>-->
+            </div>
+          </fieldset>
+          <div th:replace="~{p/but :: div_but(${can_write}, 'Зарегистрировать')}"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+
+</html>

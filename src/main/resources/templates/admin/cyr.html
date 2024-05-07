@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="main(currency, currencies, can_write)">
+  <div class="row pt-4">
+    <div class="col-sm-12">
+      <ul th:replace="~{p/link :: crumb2('/', 'Курсы валют')}"></ul>
+      <div class="element-wrapper">
+        <div class="element-box">
+          <form th:action="@{/currency/add}" th:object="${currency}" method="POST" id="formValidate">
+            <h5 class="form-header">Курс валюты</h5>
+            <fieldset class="form-group">
+              <legend><span>Добавить курс закупки на дату</span></legend>
+              <div class="row">
+                <div th:replace="~{p/sel :: sel1('cur', 'Валюта', '4', 'EUR', 'Евро')}"></div>
+                <div th:replace="~{p/inp :: date('date', 'Дата', '4', 'Дата')}"></div>
+                <div th:replace="~{p/inp :: field_('cost', 'Курс к рублю', '4', '0.00')}"></div>
+              </div>
+            </fieldset>
+            <div th:replace="~{p/but :: div_but(${can_write}, 'Ввести')}"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div th:replace="~{p/info :: info('История изменений курса', ${cyr_header}, ${cyr_values})}"></div>
+</div>
+
+</body>
+</html>

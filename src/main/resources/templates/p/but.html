@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+
+<th:block th:fragment="buttons(can_write, text)">
+  <button th:if="${can_write}" class="btn btn-primary" type="submit" th:text="${text}"></button>
+  <button th:if="${!can_write}" class="btn btn-primary" type="button" th:text="${text}"></button>
+</th:block>
+
+<th:block th:fragment="buttons_l(can_write, text)">
+  <button th:if="${can_write}" class="btn btn-light" type="submit" th:text="${text}"></button>
+  <button th:if="${!can_write}" class="btn btn-light" type="button" th:text="${text}"></button>
+</th:block>
+
+<div th:fragment="div_but(can_write, text)" class="form-buttons-w">
+  <button th:if="${can_write}" class="btn btn-primary" type="submit" th:text="${text}"></button>
+  <button th:if="${!can_write}" class="btn btn-primary" type="button" th:text="${text}"></button>
+</div>
+
+</body>
+</html>

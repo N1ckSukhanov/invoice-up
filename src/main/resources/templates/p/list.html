@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+<thead th:fragment="header(values)">
+<tr>
+  <th th:each="value: ${values}" th:text="${value}"></th>
+</tr>
+</thead>
+
+<tbody th:fragment="rows(values)">
+<tr th:each="value: ${values}">
+    <td th:each="v: ${value}" th:text="${v}"></td>
+</tr>
+</tbody>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+
+<ul th:fragment="crumb3(link, value1, value2)"
+    class="breadcrumb">
+  <li class="breadcrumb-item"><a th:href="@{/}">Главная</a></li>
+  <li class="breadcrumb-item"><a th:href="@{${link}}" th:text="${value1}"></a></li>
+  <li class="breadcrumb-item"><span th:text="${value2}"></span></li>
+</ul>
+
+<ul th:fragment="crumb2(link, value)"
+    class="breadcrumb">
+  <li class="breadcrumb-item"><a th:href="@{/}">Главная</a></li>
+  <li class="breadcrumb-item"><a th:href="@{${link}}" th:text="${value}"></a></li>
+</ul>
+
+</body>
+</html>
