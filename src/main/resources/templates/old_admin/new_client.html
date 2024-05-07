@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Новый клиент</title>
+  <meta charset="utf-8">
+  <meta content="ie=edge" http-equiv="x-ua-compatible">
+  <meta content="template language" name="keywords">
+  <meta content="Tamerlan Soziev" name="author">
+  <meta content="Admin dashboard html template" name="description">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <link th:href="@{/favicon.png}" rel="shortcut icon">
+  <link th:href="@{/apple-touch-icon.png}" rel="apple-touch-icon">
+  <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet" type="text/css">
+  <link th:href="@{/bower_components/select2/dist/css/select2.min.css}" rel="stylesheet">
+  <link th:href="@{/bower_components/bootstrap-daterangepicker/daterangepicker.css}" rel="stylesheet">
+  <link th:href="@{/bower_components/dropzone/dist/dropzone.css}" rel="stylesheet">
+  <link th:href="@{/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css}" rel="stylesheet">
+  <link th:href="@{/bower_components/fullcalendar/dist/fullcalendar.min.css}" rel="stylesheet">
+  <link th:href="@{/bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css}" rel="stylesheet">
+  <link th:href="@{/bower_components/slick-carousel/slick/slick.css}" rel="stylesheet">
+  <link th:href="@{/css/main.css?version=4.4.0}" rel="stylesheet">
+</head>
+
+<body class="menu-position-side menu-side-left full-screen">
+<div class="all-wrapper solid-bg-all">
+  <div th:replace="~{search :: search()}"></div>
+  <div class="layout-w">
+    <div th:replace="~{mobile_menu :: mobile_menu()}"></div>
+    <div th:replace="~{main_menu :: main_menu()}"></div>
+    <div class="content-w">
+      <div class="content-i">
+        <div class="content-box">
+          <div class="row pt-4">
+            <div class="col-sm-12">
+
+              <!--------------------
+        START - Breadcrumbs
+        -------------------->
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="../index.html">Главная</a>
+                </li>
+                <li class="breadcrumb-item">
+                  <a href="../index.html">Клиенты</a>
+                </li>
+                <li class="breadcrumb-item">
+                  <span>Новый клиент</span>
+                </li>
+              </ul>
+              <!--------------------
+        END - Breadcrumbs
+
+        <div class="content-panel-toggler">
+          <i class="os-icon os-icon-grid-squares-22"></i><span>Sidebar</span>
+        </div>
+        <div class="content-i">
+          <div class="content-box"><div class="row">
+<div class="col-sm-12">-------------------->
+              <div class="element-wrapper">
+                <div class="element-box">
+
+                  <!-- Форма для отправки данных -->
+
+                  <form th:action="@{/client/create}" th:object="${client}" method="POST" id="formValidate">
+                    <h5 class="form-header">
+                      Новый клиент
+                    </h5>
+                    <h6 class="form-header">
+                      ID Клиента - A51753
+                    </h6>
+
+
+                    <fieldset class="form-group">
+                      <legend><span>Общая информация</span></legend>
+
+                      <div class="row">
+
+                        <div th:replace="~{p/inp :: field('clientBic', 'БИК', '3', 'AD-XXXX')}"></div>
+
+                        <div th:replace="~{p/inp :: field('clientSwiftBic', 'SWIFT BIC', '3', 'AD-XXXX')}"></div>
+
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                            <label>Статус клиента</label>
+                            <select th:field="*{clientStatus}"
+                                    class="form-control">
+                              <option th:value="'A'" th:text="'Активный'" selected="true">
+                                Активный
+                              </option>
+                              <option th:value="'N'" th:text="'Не активный'">
+                                Не активный
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                            <label>Документооборот</label>
+                            <select th:field="*{clientDocTransfer}"
+                                    class="form-control">
+                              <option th:value="'E'" th:text="'ЭДО'" selected="true">
+                                ЭДО
+                              </option>
+                              <option th:value="'P'" th:text="'Бумажный'">
+                                Бумажный
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+
+                        <div
+                            th:replace="~{p/inp :: field('client1CName', 'Наименование в 1С в ОСВ', '6', 'AD-XXXX')}"></div>
+
+                        <div
+                            th:replace="~{p/inp :: field('clientReportName', 'Наименование для формирование отчета', '6', 'AD-XXXX')}"></div>
+
+                      </div>
+
+                      <div class="row">
+
+                        <div
+                            th:replace="~{p/inp :: field('clientInvoiceName', 'Customer по справочнику инвойсов', '6', 'AD-XXXX')}"></div>
+
+                        <div
+                            th:replace="~{p/inp :: field('clientShortName', 'Краткое наименование', '6', 'AD-XXXX')}"></div>
+
+                      </div>
+
+                    </fieldset>
+                    <fieldset class="form-group">
+                      <legend><span>Признаки</span></legend>
+                      <div class="row">
+
+                        <div class="col-sm-3">
+                          <div class="form-check">
+                            <label class="form-check-label"><input class="form-check-input"
+                                                                   th:field="*{clientPrSanctions}"
+                                                                   th:value="'SDN'"
+                                                                   type="checkbox">Находится
+                              под санкциями</label>
+                          </div>
+                        </div>
+
+                      </div>
+                    </fieldset>
+                    <fieldset class="form-group">
+                      <legend><span>Данные авторизации</span></legend>
+                      <div class="row">
+
+                        <!--                        <div th:replace="~{p/inp :: field('???', 'Логин', '6', 'AD-XXXX')}"></div>-->
+                        <!--                        <div th:replace="~{p/inp :: field('???', 'Пароль', '6', 'AD-XXXX')}"></div>-->
+
+                      </div>
+
+
+                    </fieldset>
+                    <div th:replace="~{p/but :: div_but(${can_write}, 'Зарегистрировать')}"></div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="display-type"></div>
+
+<script th:src="@{/bower_components/jquery/dist/jquery.min.js}"></script>
+<script th:src="@{/bower_components/popper.js/dist/umd/popper.min.js}"></script>
+<script th:src="@{/bower_components/moment/moment.js}"></script>
+<script th:src="@{/bower_components/chart.js/dist/Chart.min.js}"></script>
+<script th:src="@{/bower_components/select2/dist/js/select2.full.min.js}"></script>
+<script th:src="@{/bower_components/jquery-bar-rating/dist/jquery.barrating.min.js}"></script>
+<script th:src="@{/bower_components/ckeditor/ckeditor.js}"></script>
+<script th:src="@{/bower_components/bootstrap-validator/dist/validator.min.js}"></script>
+<script th:src="@{/bower_components/bootstrap-daterangepicker/daterangepicker.js}"></script>
+<script th:src="@{/bower_components/ion.rangeSlider/js/ion.rangeSlider.min.js}"></script>
+<script th:src="@{/bower_components/dropzone/dist/dropzone.js}"></script>
+<script th:src="@{/bower_components/editable-table/mindmup-editabletable.js}"></script>
+<script th:src="@{/bower_components/datatables.net/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js}"></script>
+<script th:src="@{/bower_components/fullcalendar/dist/fullcalendar.min.js}"></script>
+<script th:src="@{/bower_components/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js}"></script>
+<script th:src="@{/bower_components/tether/dist/js/tether.min.js}"></script>
+<script th:src="@{/bower_components/slick-carousel/slick/slick.min.js}"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/util.js}"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/alert.js}"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/button.js}"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/carousel.js}"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/collapse.js}"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/dropdown.js}"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/modal.js}"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/tab.js}"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/tooltip.js}"></script>
+<script th:src="@{/bower_components/bootstrap/js/dist/popover.js}"></script>
+<script th:src="@{/js/demo_customizer.js?version=4.4.0}"></script>
+<script th:src="@{/js/main.js?version=4.4.0}"></script>
+<script th:src="@{/js/isogram.js}"></script>
+</body>
+
+</html>

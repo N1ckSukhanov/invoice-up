@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<body>
+
+<div th:fragment="main(tasks)"
+     class="content-i">
+  <div class="content-box">
+    <div class="element-wrapper">
+      <h6 class="element-header">Статистика</h6>
+      <div class="element-box">
+        <div class="os-tabs-w">
+          <div class="os-tabs-controls">
+            <ul class="nav nav-tabs smaller">
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#tab_overview">Выполнено</a>
+              </li>
+
+            </ul>
+            <ul class="nav nav-pills smaller d-none d-md-flex">
+              <li class="nav-item">
+                <a th:class="'nav-link ' + ${statsFor == 'day' ? 'active show' : ''}"
+                   th:href="@{/apps_done?statsFor=day}">Сегодня</a>
+              </li>
+              <li class="nav-item">
+                <a th:class="'nav-link ' + ${statsFor == 'week' ? 'active show' : ''}"
+                   th:href="@{/apps_done?statsFor=week}">За неделю</a>
+              </li>
+              <li class="nav-item">
+                <a th:class="'nav-link ' + ${statsFor == 'month' ? 'active show' : ''}"
+                   th:href="@{/apps_done?statsFor=month}">За месяц</a>
+              </li>
+              <li class="nav-item">
+                <a th:class="'nav-link ' + ${statsFor == 'quarter' ? 'active show' : ''}"
+                   th:href="@{/apps_done?statsFor=quarter}">За квартал</a>
+              </li>
+            </ul>
+          </div>
+          <div class="tab-content">
+            <div class="tab-pane active" id="tab_overview">
+              <div class="el-tablo bigger">
+                <div class="label">Сумма платежей в</div>
+                <div class="value">12537 р</div>
+              </div>
+              <div class="el-chart-w">
+                <canvas height="150px" id="lineChart" width="600px"></canvas>
+              </div>
+            </div>
+            <div class="tab-pane" id="tab_sales"></div>
+            <div class="tab-pane" id="tab_conversion"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div th:replace="~{p/info :: info(${done_header}, ${done_values})}"></div>
+
+    <div class="element-wrapper">
+      <h6 class="element-header">Выполненные заявки</h6>
+      <div class="element-box">
+        <div class="element-box-tp">
+          <div class="table-responsive">
+            <table class="table table-padded">
+              <thead>
+              <tr>
+                <th>Клиент</th>
+                <th>Дата платежа</th>
+                <th>Заявка</th>
+                <th>Договор</th>
+                <th>Общая сумма</th>
+                <th>Налог</th>
+
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="task : ${tasks}">
+                <td><a th:text="${task.user}"></a></td>
+                <td><a th:text="${#dates.format(task.factPayDate, 'dd/MM/yyyy')}"></a></td>
+                <td><a th:text="${task.id}"></a></td>
+                <td><a th:text="${task.docNumber}"></a></td>
+                <td><a th:text="${#numbers.formatDecimal(task.totalRub, 1, 2)}"></a></td>
+                <td><a th:text="${#numbers.formatDecimal(task.taxRub, 1, 2)}"></a></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

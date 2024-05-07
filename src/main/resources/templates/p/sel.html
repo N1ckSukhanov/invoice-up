@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+
+<div th:fragment="sel1(field, name, width, value1, text1)"
+     th:class="'col-sm-' + ${width}">
+  <div class="form-group">
+    <label th:text="${name}"></label>
+
+    <select th:field="*{__${field}__}"
+            class="form-control" th:required>
+      <option th:value="${value1}" th:text="${text1}" selected></option>
+    </select>
+  </div>
+</div>
+
+<div th:fragment="sel2(field, name, width, value1, text1, value2, text2)"
+     th:class="'col-sm-' + ${width}">
+  <div class="form-group">
+    <label th:text="${name}"></label>
+
+    <select th:field="*{__${field}__}"
+            class="form-control" th:required>
+      <option th:value="${value1}" th:text="${text1}" selected></option>
+      <option th:value="${value2}" th:text="${text2}"></option>
+    </select>
+  </div>
+</div>
+
+<div th:fragment="sel3(field, name, width, value1, text1, value2, text2, value3, text3)"
+     th:class="'col-sm-' + ${width}">
+  <div class="form-group">
+    <label th:text="${name}"></label>
+
+    <select th:field="*{__${field}__}"
+            class="form-control" th:required>
+      <option th:value="${value1}" th:text="${text1}" selected></option>
+      <option th:value="${value2}" th:text="${text2}"></option>
+      <option th:value="${value3}" th:text="${text3}"></option>
+    </select>
+  </div>
+</div>
+
+</body>
+</html>

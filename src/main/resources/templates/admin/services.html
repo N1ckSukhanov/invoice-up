@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div th:fragment="main(serviceAdd, serviceUpdate, services)">
+  <div class="row pt-4">
+    <div class="col-sm-12">
+      <ul th:replace="~{p/link :: crumb2('/', 'Сервисы и налоги')}"></ul>
+      <div class="element-wrapper">
+        <div class="element-box">
+          <form th:action="@{/services/create}" th:object="${serviceAdd}" method="POST" id="formValidate">
+            <h5 class="form-header">Добавить налог на сервис</h5>
+            <fieldset class="form-group">
+              <legend><span>Добавить новый сервис</span></legend>
+              <div class="row">
+                <div th:replace="~{p/inp :: field('name', 'Сервис', '4')}"></div>
+                <div th:replace="~{p/inp :: field_('taxPercent', 'Процент налога на доход', '4', '20%')}"></div>
+                <div th:replace="~{p/inp :: field_('vatPercent', 'Процент НДС', '4', '20%')}"></div>
+              </div>
+            </fieldset>
+
+            <div th:replace="~{p/but :: div_but(${can_write}, 'Ввести')}"></div>
+
+          </form>
+        </div>
+      </div>
+
+      <div class="element-wrapper">
+        <div class="element-box">
+          <form th:action="@{/services/update}" th:object="${serviceUpdate}" method="POST" id="formValidate">
+            <h5 class="form-header">Изменение процента налога</h5>
+            <fieldset class="form-group">
+              <legend><span>Изменить налог на сервис</span></legend>
+              <div class="row">
+
+                <div th:replace="~{p/inp :: field('name', 'Сервис', '4')}"></div>
+                <div th:replace="~{p/inp :: field_('taxPercent', 'Процент налога на доход', '4', '20%')}"></div>
+                <div th:replace="~{p/inp :: field_('vatPercent', 'Процент НДС', '4', '20%')}"></div>
+
+              </div>
+            </fieldset>
+
+            <div th:replace="~{p/but :: div_but(${can_write}, 'Обновить')}"></div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div th:replace="~{p/info :: info('Сервисы и налоги', ${services_header}, ${services_values})}"></div>
+
+
+  <!--<div class="element-wrapper">
+    <h6 class="element-header">
+      Сервисы и налоги
+    </h6>-->
+</div>
+
+
+</body>
+
+</html>

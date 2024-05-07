@@ -2,34 +2,43 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>Title</title>
 </head>
 
 <body>
-    <a th:href="@{/apps_calendar}">Календарь - apps_calendar</a>
-    <br>
-    <a th:href="@{/apps_client_dashboard}">Клиенты - apps_client_dashboard</a>
-    <br>
-    <a th:href="@{/apps_done}">Выполненное - apps_done</a>
-    <br>
-    <a th:href="@{/task/new}">Новая заявка - apps_new_invoice</a>
-    <br>
-    <a th:href="@{/apps_task}">Заявка - apps_task</a>
-    <br>
-    <a th:href="@{/apps_tasks}">Заявки - apps_tasks</a>
-    <br>
-    <a th:href="@{/apps_clients}">Клиенты - apps_clients</a>
-    <br>
-    <a th:href="@{/currency}">Валюты - apps_cyr</a>
-    <br>
-    <a th:href="@{/apps_new_client}">Новый клиент - apps_new_client</a>
-    <br>
-    <a th:href="@{/apps_new_paper}">Новый договор - apps_new_paper</a>
-    <br>
-    <a th:href="@{/apps_papers}">Договоры - apps_papers</a>
-    <br>
-    <a th:href="@{/services}">Сервисы - apps_services</a>
+<h2>Admin</h2>
+
+<h3>Календарь - <a th:href="@{/apps_calendar}">calendar</a></h3>
+
+<h3>Выполненное - <a th:href="@{/apps_done}">done</a></h3>
+
+<h3>Заявки - <a th:href="@{/apps_tasks}">tasks</a></h3>
+
+<h3>Клиенты - <a th:href="@{/apps_clients}">clients</a></h3>
+
+<h3>Валюты - <a th:href="@{/currency}">cyr</a></h3>
+
+<h3>Новый клиент - <a th:href="@{/apps_new_client}">new client</a></h3>
+
+<h3>Новый договор - <a th:href="@{/apps_new_paper}">new paper</a></h3>
+
+<h3>Договоры - <a th:href="@{/apps_papers}">papers</a></h3>
+
+<h3>Сервисы - <a th:href="@{/services}">services</a></h3>
+
+<h3>Аутентификация - <a th:href="@{/auth_login}">auth login</a></h3>
+
+<h3>Роли - <a th:href="@{/role}">roles</a></h3>
+
+<h2>Client</h2>
+
+<h3>Клиенты - <a th:href="@{/apps_client_dashboard}">client dashboard</a></h3>
+
+<h3>Новая заявка - <a th:href="@{/task/new}">new invoice</a></h3>
+
+<h3>Заявка - <a th:href="@{/apps_task}">task</a></h3>
+
 </body>
 
 </html>

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <title>Новый агентский договор</title>
+  <title>Admin Dashboard HTML Template</title>
   <meta charset="utf-8">
   <meta content="ie=edge" http-equiv="x-ua-compatible">
   <meta content="template language" name="keywords">
@@ -154,7 +154,7 @@
       -------------------->
     <div class="menu-mobile menu-activated-on-click color-scheme-dark">
       <div class="mm-logo-buttons-w">
-        <a class="mm-logo" href="index.html"><img th:src="@{/img/logo.png}"><span>Clean Admin</span></a>
+        <a class="mm-logo" href="../index.html"><img th:src="@{/img/logo.png}"><span>Clean Admin</span></a>
         <div class="mm-buttons">
           <div class="content-panel-open">
             <div class="os-icon os-icon-grid-circles"></div>
@@ -183,7 +183,7 @@
           -------------------->
         <ul class="main-menu">
           <li class="has-sub-menu">
-            <a href="index.html">
+            <a href="../index.html">
               <div class="icon-w">
                 <div class="os-icon os-icon-layout"></div>
               </div>
@@ -191,7 +191,7 @@
             </a>
             <ul class="sub-menu">
               <li>
-                <a href="index.html">Dashboard 1</a>
+                <a href="../index.html">Dashboard 1</a>
               </li>
               <li>
                 <a href="apps_crypto.html">Crypto Dashboard <strong class="badge badge-danger">Hot</strong></a>
@@ -337,7 +337,7 @@
                 <a href="misc_charts.html">Charts</a>
               </li>
               <li>
-                <a href="auth_login.html">Login</a>
+                <a href="../auth_login.html">Login</a>
               </li>
               <li>
                 <a href="auth_register.html">Register</a>
@@ -577,10 +577,10 @@
           </div>
           <div class="logged-user-info-w">
             <div class="logged-user-name">
-              Бухгалтер
+              АТБ
             </div>
             <div class="logged-user-role">
-              Администратор
+              Клиент
             </div>
           </div>
 
@@ -588,34 +588,39 @@
       </div>
 
 
+      <div class="menu-actions">
+        <button class="mr-10 mb-1 btn btn-primary btn-rounded" type="button"> Новая заявка</button>
+      </div>
+
+
       <ul class="main-menu">
-        <li class="menu">
-          <a href="/apps_tasks">
-            <span>Заявки</span></a>
+
+
+        <li class=" has-sub-menu">
+          <a href="/apps_client_dashboard">
+            <div class="icon-w">
+              <div class="os-icon os-icon-layers"></div>
+            </div>
+            <span>Мои заявки</span>
+          </a>
         </li>
-        <li class="menu">
-          <a href="/apps_done">
-            <span>Выполнено</span></a>
+
+
+        <li class=" has-sub-menu">
+          <a href="#">
+            <div class="icon-w">
+              <div class="os-icon os-icon-file-text"></div>
+            </div>
+            <span>Мои договоры</span>
+          </a>
         </li>
-        <li class="menu">
-          <a href="/apps_calendar">
-            <span>Календарь</span></a>
-        </li>
-        <li class="menu">
-          <a href="/apps_new_paper">
-            <span>Новый договор</span></a>
-        </li>
-        <li class="menu">
-          <a href="/apps_papers">
-            <span>Договоры</span></a>
-        </li>
-        <li class="menu">
-          <a href="/currency">
-            <span>Курс валюты</span></a>
-        </li>
-        <li class="menu">
-          <a href="/services">
-            <span>Сервисы и налоги</span></a>
+        <li class=" has-sub-menu">
+          <a href="#">
+            <div class="icon-w">
+              <div class="os-icon os-icon-life-buoy"></div>
+            </div>
+            <span>Поддержка</span>
+          </a>
         </li>
       </ul>
 
@@ -639,7 +644,7 @@
 
       <!--
         <div class="side-menu-magic">
-    
+
           <h4>
             Light Admin
           </h4>
@@ -649,7 +654,7 @@
           <div class="btn-w">
             <a class="btn btn-white btn-rounded" href="" target="_blank">Purchase Now</a>
           </div>
-    
+
         </div>
     -->
     </div>
@@ -657,271 +662,368 @@
       END - Main Menu
       -------------------->
     <div class="content-w">
+
       <div class="content-i">
         <div class="content-box">
           <div class="row pt-4">
             <div class="col-sm-12">
-
-              <!--------------------
-        START - Breadcrumbs
-        -------------------->
-              <ul class="breadcrumb">
-                <li class="breadcrumb-item">
-                  <a href="index.html">Главная</a>
-                </li>
-                <li class="breadcrumb-item">
-                  <a href="index.html">Договоры</a>
-                </li>
-                <li class="breadcrumb-item">
-                  <span>Новый договор</span>
-                </li>
-              </ul>
-              <!--------------------
-        END - Breadcrumbs
-        
-        <div class="content-panel-toggler">
-          <i class="os-icon os-icon-grid-squares-22"></i><span>Sidebar</span>
-        </div>
-        <div class="content-i">
-          <div class="content-box"><div class="row">
-<div class="col-sm-12">-------------------->
+              <!--START - Grid of tablo statistics-->
               <div class="element-wrapper">
-                <div class="element-box">
-                  <form th:action="@{/contract/create}" method="POST" th:object="${paper}" id="formValidate">
-                    <h5 class="form-header">Новый агентский договор</h5>
 
-                    <fieldset class="form-group">
-                      <legend><span>Общая информация</span></legend>
-                      <div class="row">
+                <div class="element-content">
 
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label>Организация</label>
-                            <input th:field="*{contract.clientID}"
-                                   class="form-control" required="required" type="text">
+                  <h6 class="element-header">
+                    Общие данные
+                  </h6>
+                  <div class="element-content">
+                    <div class="row">
+                      <div class="col-sm-4 col-xxxl-3">
+                        <a class="element-box el-tablo" href="#">
+                          <div class="label">
+                            Остаток на счете
                           </div>
-                        </div>
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label>Номер договора</label>
-                            <input th:field="*{contract.contractNumber}"
-                                   class="form-control" data-error="Укажите номер договора"
-                                   placeholder="AD-XXXX" required="required" type="text">
-                            <div class="help-block form-text with-errors form-control-feedback"></div>
+                          <div class="value">
+                            57015,54
                           </div>
-                        </div>
+                          <div class="trending ">
+                            <span>руб</span></i>
+                          </div>
+                        </a>
                       </div>
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label> Дата заключения договора</label>
-                            <input th:field="*{contract.signingDate}"
-                                   class="single-daterange form-control" placeholder="Дата начала" type="text"
-                                   value="01/02/2024">
+                      <div class="col-sm-4 col-xxxl-3">
+                        <a class="element-box el-tablo" href="#">
+                          <div class="label">
+                            Не хватает для платежа
                           </div>
-                        </div>
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label> Дата планового завершения договора</label>
-                            <input th:field="*{contract.planFinishDate}"
-                                   class="single-daterange form-control" placeholder="Дата планового окончания"
-                                   type="text" value="01/02/2025">
+                          <div class="value">
+                            15620,05
                           </div>
-                        </div>
+                          <div class="trending">
+                            <span>руб</span></i>
+                          </div>
+                        </a>
                       </div>
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label>Сторона уплаты налога</label>
-
-                            <select th:field="*{contract.user}" class="form-control">
-                              <option th:value="'Company'" th:text="'Организация'"></option>
-                              <option th:value="'Service'" th:text="'Сервис'" selected></option>
-                            </select>
+                      <div class="col-sm-4 col-xxxl-3">
+                        <a class="element-box el-tablo" href="#">
+                          <div class="label">
+                            ЗADолженность
                           </div>
-                        </div>
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label>Статус договора</label>
-                            <select th:field="*{contract.contractStatus}" class="form-control">
-                            <option th:value="'A'" th:text="'Активен'" selected></option>
-                            <option th:value="'B'" th:text="'На подписании'"></option>
-                            <option th:value="'C'" th:text="'Расторгнут'"></option>
-                          </select>
+                          <div class="value">
+                            0,00
                           </div>
-                        </div>
+                          <div class="trending ">
+                            <span>руб</span></i>
+                          </div>
+                        </a>
                       </div>
-                      <div class="row">
-
-                        <div class="col-sm-4">
-                          <div class="form-group">
-                            <label>Индекс</label>
-                            <input th:field="*{contract.index}"
-                                class="form-control" data-error="Укажите индекс адреса организации"
-                                placeholder="XXXXXX" required="required" type="text">
-                            <div class="help-block form-text with-errors form-control-feedback"></div>
-                          </div>
-                        </div>
-                        <div class="col-sm-4">
-                          <div class="form-group">
-                            <label>Город</label>
-                            <input th:field="*{contract.city}"
-                                class="form-control" data-error="Укажите город регистрации организации"
-                                placeholder="Москва" required="required" type="text">
-                            <div class="help-block form-text with-errors form-control-feedback"></div>
-                          </div>
-                        </div>
-                        <div class="col-sm-4">
-                          <div class="form-group">
-                            <label>Адрес</label>
-                            <input th:field="*{contract.address}"
-                                class="form-control" data-error="Укажите адрес организации"
-                                placeholder="Проспект Андропова, д.1" required="required" type="text">
-                            <div class="help-block form-text with-errors form-control-feedback"></div>
-                          </div>
-                        </div>
+                      <div class="d-none d-xxxl-block col-xxxl-3">
+                        <!--
+              <a class="element-box el-tablo" href="#">
+              <div class="label">
+                Refunds Processed
+              </div>
+              <div class="value">
+                $294
+              </div>
+              <div class="trending trending-up-basic">
+                <span>12%</span><i class="os-icon os-icon-arrow-up2"></i>
+              </div>
+              </a>
+              -->
                       </div>
-                    </fieldset>
-                    <fieldset class="form-group">
-                      <legend><span>Контакты</span></legend>
-                      <div class="row">
-                        <div class="col-sm-4">
-                          <div class="form-group">
-                            <label>ФИО 1</label>
-                            <input th:field="*{contact1.fullName}"
-                                class="form-control" data-error="Укажите ФИО"
-                                placeholder="ФИО" required="required" type="text">
-                            <div class="help-block form-text with-errors form-control-feedback"></div>
-                          </div>
-                        </div>
-
-                        <div class="col-sm-4">
-                          <div class="form-group">
-                            <label>email 1</label>
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text">mail</div>
-                              </div>
-                              <input th:field="*{contact1.email}"
-                                  class="form-control" placeholder="xxxxxxx@xxxx.xx" type="text" required="required">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-sm-4">
-                          <div class="form-group">
-                            <label>Приём документов</label>
-                            <select th:field="*{contact1.accepts}"
-                                class="form-control" required="required">
-                              <option th:value="'Y'" th:text="'Да'" selected></option>
-                              <option th:value="'N'" th:text="'Нет'"></option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-4">
-                          <div class="form-group">
-                            <label>ФИО 2</label>
-                            <input th:field="*{contact2.fullName}"
-                                class="form-control" placeholder="ФИО" type="text">
-                            <div></div>
-                          </div>
-                        </div>
-
-                        <div class="col-sm-4">
-                          <div class="form-group">
-                            <label>email 2</label>
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text">mail</div>
-                              </div>
-                              <input th:field="*{contact2.email}"
-                                  class="form-control" placeholder="xxxxxxx@xxxx.xx" type="text">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-sm-4">
-                          <div class="form-group">
-                            <label>Приём документов</label>
-                            <select th:field="*{contact2.accepts}"
-                                class="form-control">
-                              <option th:value="'Y'" th:text="'Да'"></option>
-                              <option th:value="'N'" th:text="'Нет'" selected></option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-
-                    </fieldset>
-
-
-                    <!-- 
-        <div class="form-check">
-          <label class="form-check-label"><input class="form-check-input" type="checkbox">I agree to terms and conditions</label>
-        </div>
-    -->
-                    <div class="form-buttons-w">
-                      <button class="btn btn-primary" type="submit"> Зарегистрировать</button>
                     </div>
-                  </form>
+                  </div>
+                </div>
+                <!--</div>-->
+
+                <!--<div class="element-wrapper">-->
+                <div class="element-content">
+
+                  <h6 class="element-header">
+                    Договоры
+                  </h6>
+                  <div class="element-content">
+                    <div class="row">
+                      <div class="col-sm-4 col-xxxl-3">
+                        <div class="profile-tile">
+                          <a class="profile-tile-box" href="">
+                            <div class="pt-avatar-w">
+                              <img alt="" th:src="@{/img/avatar3.png}">
+                            </div>
+                            <div class="pt-user-name">
+                              AD-4587
+                            </div>
+                          </a>
+                          <div class="profile-tile-meta">
+                            <ul>
+                              <li>
+                                Номер договора:<strong>AD-4587</strong>
+                              </li>
+                              <li>
+                                Дата подписания:<strong>05/05/2023</strong>
+                              </li>
+                              <li>
+                                Дата расторжения:<strong>-</strong>
+                              </li>
+                            </ul>
+                            <div class="pt-btn">
+                              <a class="btn btn-success btn-sm" href="">Активен</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-xxxl-3">
+                        <div class="profile-tile">
+                          <a class="profile-tile-box" href="">
+                            <div class="pt-avatar-w">
+                              <img alt="" th:src="@{/img/avatar3.png}">
+                            </div>
+                            <div class="pt-user-name">
+                              AD-4588
+                            </div>
+                          </a>
+                          <div class="profile-tile-meta">
+                            <ul>
+                              <li>
+                                Номер договора:<strong>AD-4588</strong>
+                              </li>
+                              <li>
+                                Дата подписания:<strong>05/05/2022</strong>
+                              </li>
+                              <li>
+                                Дата расторжения:<strong>04/05/2023</strong>
+                              </li>
+                            </ul>
+                            <div class="pt-btn">
+                              <a class="btn btn-secondary btn-sm" href="">Расторгнут</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="d-none d-xxxl-block col-xxxl-3">
+                        <a class="element-box el-tablo" href="#">
+                          <!--
+              <div class="label">
+                Refunds Processed
+              </div>
+              <div class="value">
+                $294
+              </div>
+              <div class="trending trending-up-basic">
+                <span>12%</span><i class="os-icon os-icon-arrow-up2"></i>
+              </div>
+              -->
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+
+                </div>
+                <!--</div>-->
+                <!--END - Grid of tablo statistics-->
+
+
+                <!--<div class="row pt-4">
+              <div class="col-sm-12">-->
+                <!--START - Recent Ticket Comments-->
+                <!--<div class="element-wrapper">-->
+                <div class="element-content">
+                  <div class="element-actions">
+                    <form class="form-inline justify-content-sm-end">
+                      <select class="form-control form-control-sm rounded">
+                        <option value="Pending">
+                          Выполнено
+                        </option>
+                        <option value="Active">
+                          На рассмотрении
+                        </option>
+                        <option value="Cancelled">
+                          Принят к платежу
+                        </option>
+                      </select>
+                    </form>
+                  </div>
+                  <h6 class="element-header">
+                    Заявки
+                  </h6>
+                  <div class="element-box-tp">
+                    <div class="table-responsive">
+                      <table class="table table-padded">
+                        <thead>
+                        <tr>
+                          <th>
+                            Дата платежа
+                          </th>
+                          <th>
+                            Заявка
+                          </th>
+                          <th>
+                            Договор
+                          </th>
+                          <th>
+                            Общая сумма
+                          </th>
+                          <th>
+                            Налог
+                          </th>
+                          <th>
+                            Статус
+                          </th>
+                          <th>
+                            Действия
+                          </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td>
+                            <a>Сегодня</a>
+                          </td>
+
+                          <td>
+                            <a>231114-1</a>
+                          </td>
+                          <td>
+                            <a>AD-4587</a>
+                          </td>
+                          <td>
+                            <a>166.00</a>
+                          </td>
+                          <td>
+                            <a>16.60</a>
+                          </td>
+                          <td class="nowrap">
+                            <span class="status-pill smaller blue"></span><span>Принят к платежу</span>
+                          </td>
+                          <td class="row-actions">
+                            <a class="danger" href="#"><i class="os-icon os-icon-ui-15"></i></a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <a>Сегодня</a>
+                          </td>
+
+                          <td>
+                            <a>231114-1</a>
+                          </td>
+                          <td>
+                            <a>AD-4587</a>
+                          </td>
+                          <td>
+                            <a>166.00</a>
+                          </td>
+                          <td>
+                            <a>16.60</a>
+                          </td>
+                          <td class="nowrap">
+                            <span class="status-pill smaller  green"></span><span>Выполнено</span>
+                          </td>
+                          <td class="row-actions">
+                            <a class="danger" href="#"><i class="os-icon os-icon-ui-15"></i></a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <a>Сегодня</a>
+                          </td>
+
+                          <td>
+                            <a>231114-1</a>
+                          </td>
+                          <td>
+                            <a>AD-4587</a>
+                          </td>
+                          <td>
+                            <a>166.00</a>
+                          </td>
+                          <td>
+                            <a>16.60</a>
+                          </td>
+                          <td class="nowrap">
+                            <span class="status-pill smaller yellow"></span><span>На рассмотрении</span>
+                          </td>
+                          <td class="row-actions">
+                            <a class="danger" href="#"><i class="os-icon os-icon-ui-15"></i></a>
+                          </td>
+                        </tr>
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <!--END - Recent Ticket Comments-->
+              </div>
+            </div><!--------------------
+              START - Color Scheme Toggler
+              -------------------->
+            <div class="floated-colors-btn second-floated-btn">
+              <div class="os-toggler-w">
+                <div class="os-toggler-i">
+                  <div class="os-toggler-pill"></div>
                 </div>
               </div>
+              <span>Темная </span><span>тема</span>
             </div>
+            <!--------------------
+            END - Color Scheme Toggler
+            -------------------->
+
           </div>
-
-
         </div>
       </div>
     </div>
+    <div class="display-type"></div>
   </div>
-  <div class="display-type"></div>
-</div>
-<script th:src="@{/bower_components/jquery/dist/jquery.min.js}"></script>
-<script th:src="@{/bower_components/popper.js/dist/umd/popper.min.js}"></script>
-<script th:src="@{/bower_components/moment/moment.js}"></script>
-<script th:src="@{/bower_components/chart.js/dist/Chart.min.js}"></script>
-<script th:src="@{/bower_components/select2/dist/js/select2.full.min.js}"></script>
-<script th:src="@{/bower_components/jquery-bar-rating/dist/jquery.barrating.min.js}"></script>
-<script th:src="@{/bower_components/ckeditor/ckeditor.js}"></script>
-<script th:src="@{/bower_components/bootstrap-validator/dist/validator.min.js}"></script>
-<script th:src="@{/bower_components/bootstrap-daterangepicker/daterangepicker.js}"></script>
-<script th:src="@{/bower_components/ion.rangeSlider/js/ion.rangeSlider.min.js}"></script>
-<script th:src="@{/bower_components/dropzone/dist/dropzone.js}"></script>
-<script th:src="@{/bower_components/editable-table/mindmup-editabletable.js}"></script>
-<script th:src="@{/bower_components/datatables.net/js/jquery.dataTables.min.js}"></script>
-<script th:src="@{/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js}"></script>
-<script th:src="@{/bower_components/fullcalendar/dist/fullcalendar.min.js}"></script>
-<script th:src="@{/bower_components/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js}"></script>
-<script th:src="@{/bower_components/tether/dist/js/tether.min.js}"></script>
-<script th:src="@{/bower_components/slick-carousel/slick/slick.min.js}"></script>
-<script th:src="@{/bower_components/bootstrap/js/dist/util.js}"></script>
-<script th:src="@{/bower_components/bootstrap/js/dist/alert.js}"></script>
-<script th:src="@{/bower_components/bootstrap/js/dist/button.js}"></script>
-<script th:src="@{/bower_components/bootstrap/js/dist/carousel.js}"></script>
-<script th:src="@{/bower_components/bootstrap/js/dist/collapse.js}"></script>
-<script th:src="@{/bower_components/bootstrap/js/dist/dropdown.js}"></script>
-<script th:src="@{/bower_components/bootstrap/js/dist/modal.js}"></script>
-<script th:src="@{/bower_components/bootstrap/js/dist/tab.js}"></script>
-<script th:src="@{/bower_components/bootstrap/js/dist/tooltip.js}"></script>
-<script th:src="@{/bower_components/bootstrap/js/dist/popover.js}"></script>
-<script th:src="@{/js/demo_customizer.js?version=4.4.0}"></script>
-<script th:src="@{/js/main.js?version=4.4.0}"></script>
-<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+  <script th:src="@{/bower_components/jquery/dist/jquery.min.js}"></script>
+  <script th:src="@{/bower_components/popper.js/dist/umd/popper.min.js}"></script>
+  <script th:src="@{/bower_components/moment/moment.js}"></script>
+  <script th:src="@{/bower_components/chart.js/dist/Chart.min.js}"></script>
+  <script th:src="@{/bower_components/select2/dist/js/select2.full.min.js}"></script>
+  <script th:src="@{/bower_components/jquery-bar-rating/dist/jquery.barrating.min.js}"></script>
+  <script th:src="@{/bower_components/ckeditor/ckeditor.js}"></script>
+  <script th:src="@{/bower_components/bootstrap-validator/dist/validator.min.js}"></script>
+  <script th:src="@{/bower_components/bootstrap-daterangepicker/daterangepicker.js}"></script>
+  <script th:src="@{/bower_components/ion.rangeSlider/js/ion.rangeSlider.min.js}"></script>
+  <script th:src="@{/bower_components/dropzone/dist/dropzone.js}"></script>
+  <script th:src="@{/bower_components/editable-table/mindmup-editabletable.js}"></script>
+  <script th:src="@{/bower_components/datatables.net/js/jquery.dataTables.min.js}"></script>
+  <script th:src="@{/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js}"></script>
+  <script th:src="@{/bower_components/fullcalendar/dist/fullcalendar.min.js}"></script>
+  <script th:src="@{/bower_components/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js}"></script>
+  <script th:src="@{/bower_components/tether/dist/js/tether.min.js}"></script>
+  <script th:src="@{/bower_components/slick-carousel/slick/slick.min.js}"></script>
+  <script th:src="@{/bower_components/bootstrap/js/dist/util.js}"></script>
+  <script th:src="@{/bower_components/bootstrap/js/dist/alert.js}"></script>
+  <script th:src="@{/bower_components/bootstrap/js/dist/button.js}"></script>
+  <script th:src="@{/bower_components/bootstrap/js/dist/carousel.js}"></script>
+  <script th:src="@{/bower_components/bootstrap/js/dist/collapse.js}"></script>
+  <script th:src="@{/bower_components/bootstrap/js/dist/dropdown.js}"></script>
+  <script th:src="@{/bower_components/bootstrap/js/dist/modal.js}"></script>
+  <script th:src="@{/bower_components/bootstrap/js/dist/tab.js}"></script>
+  <script th:src="@{/bower_components/bootstrap/js/dist/tooltip.js}"></script>
+  <script th:src="@{/bower_components/bootstrap/js/dist/popover.js}"></script>
+  <script th:src="@{/js/demo_customizer.js?version=4.4.0}"></script>
+  <script th:src="@{/js/main.js?version=4.4.0}"></script>
+  <script>
+      (function (i, s, o, g, r, a, m) {
+          i['GoogleAnalyticsObject'] = r;
+          i[r] = i[r] || function () {
+              (i[r].q = i[r].q || []).push(arguments)
+          }, i[r].l = 1 * new Date();
+          a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+          a.async = 1;
+          a.src = g;
+          m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-    ga('create', 'UA-XXXXXXX-9', 'auto');
-    ga('send', 'pageview');
-</script>
+      ga('create', 'UA-XXXXXXX-9', 'auto');
+      ga('send', 'pageview');
+  </script>
 </body>
 
 </html>

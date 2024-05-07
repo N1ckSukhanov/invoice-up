@@ -3,9 +3,7 @@ package com.pack.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -38,6 +36,7 @@ public class Contract {
                 ", changeDate='" + changeDate + '\'' +
                 '}';
     }
+
     private String organization;
 
     @Column(name = "DCID")

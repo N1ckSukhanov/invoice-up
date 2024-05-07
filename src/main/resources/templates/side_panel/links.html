@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+
+<ul th:fragment="links(my_class, show_exit)"
+    th:class="${my_class}">
+  <li class="menu"><a href="/apps_tasks"><span>Заявки</span></a></li>
+  <li class="menu"><a href="/apps_done"><span>Выполнено</span></a></li>
+  <li class="menu"><a href="/apps_calendar"><span>Календарь</span></a></li>
+  <li class="menu"><a href="/apps_new_paper"><span>Новый договор</span></a></li>
+  <li class="menu"><a href="/apps_papers"><span>Договоры</span></a></li>
+  <li class="menu"><a href="/currency"><span>Курс валюты</span></a></li>
+  <li class="menu"><a href="/services"><span>Сервисы и налоги</span></a></li>
+  <li th:if="${show_exit}" class="menu"><a href="#"><span>Выйти</span></a></li>
+</ul>
+
+
+</body>
+</html>

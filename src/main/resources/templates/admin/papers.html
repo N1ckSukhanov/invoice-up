@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div th:fragment="main(contractSearch, contracts, can_write)">
+  <div class="element-wrapper">
+    <h6 class="element-header">Договоры</h6>
+    <a href="/role">ROLES</a>
+    <div class="row">
+      <div class="col-sm-2 col-xxxl-3">
+        <a class="element-box el-tablo centered trend-in-corner padded bold-label"
+           th:href="@{/apps_new_paper}">
+          <div class="value">+</div>
+          <div class="label">Новый договор</div>
+
+        </a>
+      </div>
+    </div>
+
+    <div class="element-box">
+      <form th:action="@{/contract/search}" method="POST" th:object="${contractSearch}" id="formValidate">
+        <h5 class="form-header">Фильтр поиска договоров</h5>
+        <fieldset class="form-group">
+          <div class="row">
+
+            <div th:replace="~{p/inp :: field('clientID', 'Клиент', '4')}"></div>
+            <div th:replace="~{p/inp :: field('contractNumber', 'Номер договора', '4')}"></div>
+
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label> Дата заключения договора</label>
+                <input th:field="*{signingDate}"
+                       class="single-daterange form-control" placeholder="Дата начала" type="text" value="">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label> Дата расторжения договора</label>
+                <input th:field="*{planFinishDate}"
+                       class="single-daterange form-control" placeholder="Дата начала" type="text" value="">
+              </div>
+            </div>
+
+            <div th:replace="~{p/sel :: sel2('user', 'Сторона уплаты налога', '6',
+                                               'Company', 'Организация', 'Service', 'Сервис')}"></div>
+
+            <div th:replace="~{p/sel :: sel3('contractStatus', 'Статус', '4',
+                                               'A', 'Активен', 'B', 'На подписании', 'C', 'Расторгнут')}"></div>
+
+          </div>
+
+        </fieldset>
+
+        <div th:replace="~{p/but :: div_but(${can_write}, 'Искать')}"></div>
+      </form>
+    </div>
+  </div>
+
+  <div th:replace="~{p/info :: info(${papers_header}, ${papers_values})}"></div>
+
+</div>
+
+</body>
+
+</html>

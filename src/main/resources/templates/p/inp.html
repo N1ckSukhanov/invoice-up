@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<div th:fragment="item (task)" class="pipeline-item">
+  <div class="pi-controls">
+    <div class="status status-green" data-placement="top" data-toggle="tooltip" title="Active Status"></div>
+  </div>
+  <div class="pi-body">
+    <div class="pi-info">
+      <div class="pi-sub" th:text="${'Total: ' + task.totalCur + ' евро'}"></div>
+      <div class="pi-sub" th:text="${'НДС: ' + task.taxCur + ' евро'}"></div>
+      <div class="pi-sub" th:text="${'Итого: ' + task.totalRub + ' руб'}"></div>
+    </div>
+  </div>
+  <div class="pi-foot">
+    <div class="tags">
+
+    </div>
+
+    <a class="extra-info" href="#"><i class="os-icon os-icon-layers"></i><span>8</span></a>
+  </div>
+</div>
+
+<div th:fragment="field(field, name, width)"
+     th:class="'col-sm-' + ${width}">
+  <div class="form-group">
+    <label th:text="${name}"></label>
+
+    <input th:field="*{__${field}__}"
+           class="form-control" th:data-error="'Задайте ' + ${name}" th:required>
+    <div class="help-block form-text with-errors form-control-feedback"></div>
+  </div>
+</div>
+
+<div th:fragment="field_(field, name, width, placeholder)"
+     th:class="'col-sm-' + ${width}">
+  <div class="form-group">
+    <label th:text="${name}"></label>
+
+    <input th:field="*{__${field}__}"
+           class="form-control" th:data-error="'Задайте ' + ${name}"
+           th:placeholder="${placeholder}" th:required>
+    <div class="help-block form-text with-errors form-control-feedback"></div>
+  </div>
+</div>
+
+<div th:fragment="select(field, name, width, elems)"
+     th:class="'col-sm-' + ${width}">
+  <div class="form-group">
+
+    <label th:text="${name}"></label>
+
+    <select th:field="*{__${field}__}"
+            class="form-control" th:required>
+      <option th:each="elem : ${__${elems}__}" th:value="${elem.value()}" th:text="${elem.text()}"></option>
+    </select>
+  </div>
+</div>
+
+
+<div th:fragment="email(field, name, width)"
+     th:class="'col-sm-' + ${width}">
+  <div class="form-group">
+    <label th:text="${name}"></label>
+    <div class="input-group">
+
+      <div class="input-group-prepend">
+        <div class="input-group-text">mail</div>
+      </div>
+
+      <input th:field="*{__${field}__}"
+             class="form-control" th:data-error="'Задайте ' + ${name}"
+             placeholder="xxxxxxx@xxxx.xx" th:required>
+    </div>
+  </div>
+</div>
+
+<div th:fragment="date(field, name, width, placeholder)"
+     th:class="'col-sm-' + ${width}">
+  <div class="form-group">
+    <label th:text="${name}"></label>
+    <input th:field="*{__${field}__}"
+           class="single-daterange form-control" th:placeholder="${placeholder}" value="01/02/2024">
+  </div>
+</div>

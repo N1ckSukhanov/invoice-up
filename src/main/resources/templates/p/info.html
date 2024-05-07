@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+
+<div th:fragment="info(name, header, values)"
+    class="element-box">
+  <h6 th:text="${name}" class="element-header"></h6>
+  <div class="element-box-tp">
+    <div class="table-responsive">
+      <table class="table table-padded">
+        <tbody th:replace="~{p/list :: header(${header})}"></tbody>
+        <tbody th:replace="~{p/list :: rows(${values})}"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
