@@ -60,5 +60,9 @@ public class Client {
     @Column(name = "CLСDT")
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime changeDate;
+
+    private String login;
+
+    private String password;
 }
 

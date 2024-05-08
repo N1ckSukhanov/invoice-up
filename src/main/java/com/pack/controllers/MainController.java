@@ -1,10 +1,7 @@
 package com.pack.controllers;
 
 import com.pack.dto.PaperClients;
-import com.pack.entity.Client;
-import com.pack.entity.Contract;
-import com.pack.entity.Role;
-import com.pack.entity.UserRole;
+import com.pack.entity.*;
 import com.pack.model.ClientSearch;
 import com.pack.repository.RoleRepository;
 import com.pack.service.TaskService;
@@ -15,7 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -56,8 +56,32 @@ public class MainController {
         };
         model.addAttribute("labels", result.labels());
         model.addAttribute("counts", result.counts());
-        model.addAttribute("tasks", result.tasks());
         model.addAttribute("statsFor", statsFor);
+
+        List<Task> tasks = result.tasks();
+
+
+
+        /*List<List<String>> elems = new ArrayList<>();
+        for (Task task : tasks){
+            List<String> array = new ArrayList<>();
+//            String[] arr1 = {task.getUser(), };
+            array.add(task.getUser());
+            array.add(String.valueOf(task.getFactPayDate()));
+            array.add(task.getId());
+            array.add(task.getDocNumber());
+            array.add(Long.toString(task.getTotalRub(), 2));
+            array.add(Long.toString(task.getTaxRub(), 2));
+            elems.add(array);
+        }
+        System.out.println(tasks);
+
+        String[] arr2 = {"Клиент", "Дата платежа", "Заявка", "Договор", "Общая сумма", "Налог"};
+        List<String> heads = new ArrayList<>(Arrays.asList(arr2));
+
+        model.addAttribute("done_values", elems);
+        model.addAttribute("done_header", heads);*/
+
         return "admin";
     }
 

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+
+<li th:fragment="nav(statsFor, period, name)"
+    class="nav-item">
+  <a th:class="'nav-link ' + ${statsFor == ${period} ? 'active show' : ''}"
+     th:href="@{/apps_done?statsFor=${period}}" th:text="${name}"></a>
+</li>
+
+</body>
+</html>

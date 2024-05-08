@@ -22,7 +22,6 @@ public class ClientController {
 
     @PostMapping("/create")
     public String createClient(@ModelAttribute Client client) {
-
         clientRepository.save(client);
         System.out.println(client);
         return "redirect:/";

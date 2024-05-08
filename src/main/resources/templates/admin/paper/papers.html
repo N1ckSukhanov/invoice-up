@@ -5,17 +5,8 @@
 <div th:fragment="main(contractSearch, contracts, can_write)">
   <div class="element-wrapper">
     <h6 class="element-header">Договоры</h6>
-    <a href="/role">ROLES</a>
-    <div class="row">
-      <div class="col-sm-2 col-xxxl-3">
-        <a class="element-box el-tablo centered trend-in-corner padded bold-label"
-           th:href="@{/apps_new_paper}">
-          <div class="value">+</div>
-          <div class="label">Новый договор</div>
 
-        </a>
-      </div>
-    </div>
+    <div th:replace="~{p/new :: new('/apps_new_paper', 'Новый договор')}"></div>
 
     <div class="element-box">
       <form th:action="@{/contract/search}" method="POST" th:object="${contractSearch}" id="formValidate">
@@ -59,7 +50,7 @@
     </div>
   </div>
 
-  <div th:replace="~{p/info :: info(${papers_header}, ${papers_values})}"></div>
+  <div th:replace="~{p/info :: info(${papers_header}, ${papers_values}, false)}"></div>
 
 </div>
 

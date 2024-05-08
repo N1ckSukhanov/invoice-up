@@ -1,6 +1,7 @@
 package com.pack.controllers;
 
 import com.pack.dto.Constants;
+import com.pack.entity.Client;
 import com.pack.entity.Role;
 import com.pack.entity.RolePage;
 import com.pack.entity.UserRole;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -40,14 +42,16 @@ public class RoleController {
                         HttpServletRequest request) {
         appService.setStateModel(AppState.ROLES, model);
         RolePage rolePage = securityChecker.check(request);
-        if (!rolePage.isRead())
-            return constants.previous(request);
+//        if (!rolePage.isRead())
+//            return constants.previous(request);
         model.addAttribute("new_user", new UserRole()); //  /role/create_user
         model.addAttribute("new_role", new Role()); //  /role/create
         model.addAttribute("can_write", rolePage.isWrite());
 
         model.addAttribute("choose_role", new Role()); //  /role/choose
         model.addAttribute("roles", roleRepository.findAll()); //  /role/create_user
+
+        List<UserRole> userRoles = userRoleRepository.findAll();
         model.addAttribute("user_roles", userRoleRepository.findAll()); //  /role
         model.addAttribute("pages_create", rolePageRepository.findAllByRoleId(initRoleId));
         model.addAttribute("find_role", new Role());
@@ -60,6 +64,28 @@ public class RoleController {
             model.addAttribute("chosen_pages", rolePageRepository.findAllByRoleId(initRoleId));
             model.addAttribute("change_role", new Role());
         }
+
+        List<List<String>> elems = new ArrayList<>();
+        for (UserRole userRole : userRoles){
+            List<String> array = new ArrayList<>();
+            array.add(userRole.getLogin());
+            array.add(userRole.getPassword());
+            array.add(userRole.getFullName());
+            array.add(userRole.getRole().getInfo());
+            elems.add(array);
+        }
+        System.out.println(userRoles);
+
+        List<String> heads = new ArrayList<>();
+        heads.add("Логин");
+        heads.add("Пароль");
+        heads.add("ФИО");
+        heads.add("Роль");
+        heads.add("Действия");
+
+        model.addAttribute("roles_values", elems);
+        model.addAttribute("roles_header", heads);
+
         return "admin";
     }
 

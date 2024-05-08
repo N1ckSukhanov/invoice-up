@@ -84,3 +84,12 @@
            class="single-daterange form-control" th:placeholder="${placeholder}" value="01/02/2024">
   </div>
 </div>
+
+<div th:fragment="check(field, name, width, value)"
+     th:class="'col-sm-' + ${width}">
+  <div class="form-check">
+    <label th:text="${name}"></label>
+    <input th:field="*{__${field}__}" th:value="${value}"
+           class="form-check-input" type="checkbox">
+  </div>
+</div>

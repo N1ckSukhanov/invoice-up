@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+
+<div th:fragment="new(link, name)"
+     class="row">
+  <div class="col-sm-2 col-xxxl-3">
+    <a class="element-box el-tablo centered trend-in-corner padded bold-label"
+       th:href="@{${link}}">
+      <div class="value">+</div>
+      <div th:text="${name}" class="label"></div>
+    </a>
+  </div>
+</div>
+
+</body>
+</html>

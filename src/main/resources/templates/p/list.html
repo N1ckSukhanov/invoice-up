@@ -14,5 +14,12 @@
 </tr>
 </tbody>
 
+<tbody th:fragment="rows_button(values, can_write)">
+<tr th:each="value: ${values}">
+  <td th:each="v: ${value}" th:text="${v}"></td>
+  <td th:insert="~{p/but :: buttons_l(${can_write}, 'Удалить пользователя')}" class="row-actions"></td>
+</tr>
+</tbody>
+
 </body>
 </html>
